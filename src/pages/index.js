@@ -18,7 +18,7 @@ const style = {
 export default ({ data }) => {
   return (
     <Layout>
-      <SEO />   
+      <SEO title="Home" />   
       <div>
         <h1>
           Strong Opinions, Loosely Held

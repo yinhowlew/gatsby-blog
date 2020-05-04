@@ -1,10 +1,8 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import PropTypes from "prop-types";
-
-// import { MDXProvider } from "@mdx-js/react";
-// import { MDXRenderer } from "gatsby-plugin-mdx";
 import Layout from "../components/Layout";
+import SEO from '../components/SEO';
 
 
 const Tags = ({ pageContext, data }) => {
@@ -15,6 +13,7 @@ const Tags = ({ pageContext, data }) => {
   } tagged with "${tag}"`
   return (
     <Layout>
+      <SEO title={tag} description={`Posts in ${tag} category`} />          
       <h2>{tagHeader}</h2>
       <ul>
         {edges.map(({ node }) => {

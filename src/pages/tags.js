@@ -4,6 +4,7 @@ import kebabCase from "lodash/kebabCase"
 import { Link, graphql } from "gatsby"
 import Tag from "../components/Tag/Tag";
 import Layout from "../components/Layout";
+import SEO from '../components/SEO';
 // this is for index page of all tags;  for individual tag template, find under template/tag.js
 const TagsPage = ({
   data: {
@@ -14,7 +15,7 @@ const TagsPage = ({
   },
 }) => (
   <Layout>
-{/*}    <Helmet title={title} /> */}
+    <SEO title="All posts" />  
     <div>
       <h1>Tags</h1>
         <div  style={{ display: "flex", flexDirection: "row"}}>

@@ -5,12 +5,13 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Img from "gatsby-image";
 import SEO from '../components/SEO';
+// import Gradient from '../components/Gradient';
 
 const About = ({ data }) => {
 	return (
 	  <Layout>
 	    <SEO title="About" />
-	    <div>
+	    <main>
 	    	<h3>About this blog</h3>
 		    <p>“Strong opinions, loosely held” is a framework of thinking that I aspire towards.</p>
 		    <p>I like to think through issues deeply and develop solid arguments and form firm theoretical grounds (Strong Opinions). But it is also important not to be overly attached to our thinking (Loosely Held) – especially when new information arises that challenges some of our prior assumptions. </p>	    	
@@ -31,7 +32,7 @@ const About = ({ data }) => {
 		    <p>work-related writings on <a href='https://medium.com/@yinhow'>Medium</a></p>
 		    <p>my nascent <a href='https://github.com/yinhowlew'>Github</a></p>
 		    <p>I also write about poker <span><a href="https://positiveev.wordpress.com">here</a></span>. </p>
-		</div> 
+		</main> 
 	  </Layout>		
 	)
 }
