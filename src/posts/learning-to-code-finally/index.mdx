@@ -1,0 +1,106 @@
+---
+title: learning to code (finally)
+description:  working on my first project
+featuredImage: coding.jpg
+tags:
+ - Coding
+date: 2020-03-20
+---
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>Photo by Safar Safarov on Unsplash</p>
+
+I have recently embarked on the wonderful journey of studying programming on my own. It has been a **fulfilling challenge**, and I intend to keep learning more.
+
+I started with web development – since it feels like a natural entry-point for a beginner – and waded through the fundamentals (html/css/JavaScript – I love JavaScript!) and modern front-end libraries (ReactJS and Redux), and dabbled a little on backend (nodeJS, express, sql).
+
+Here are the resources that I used in my learning:
+
+1. Udemy courses by Andrei Neagoie: [Zero-to-Mastery](https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/) and a follow-up intermediate course. Andrei has written a [great article](https://medium.com/zerotomastery/learn-to-code-in-2019-get-hired-and-have-fun-along-the-way-d4197f96be27) on how to learning coding from scratch. His courses are great for beginners like me, and he has built a strong and growing community of students / alumni that serves as a great learning / networking resource.
+2. freeCodeCamp – a free and great platform to learn. I used it sometimes to reinforce certain concepts that I was weak at.
+3. Code Wars – helped me firm up my JavaScript game with code challenges.
+4. YouTube – I went through a few tutorials building small projects and picked up some best practices in how to approach common problems.
+
+<br />
+
+To me, there are some parallels between learning programming and learning a new spoken language.
+
+Both require a tremendous amount of **muscle memories**.
+
+Understanding new vocabs from a book and knowing how to repeat a sentence after your teacher is one thing; being able to speak and effectively apply what you’ve learned in a real conversation is a totally different ball game.
+
+Similarly, after finishing the courses, even though I have learned a great deal intellectually, I still found myself struggling when coding without tutorial and making the most simple of mistakes.
+
+<br />
+
+As such, I decided to **work on a real-world project** to help build up more experience and muscle memory.
+
+I chose to build from scratch a front-end only partial replica of a friend’s **e-commerce (Boxgreen.co)** as it has features that I want to get more practice on, and their [website](boxgreen.co) looks good.
+
+<br />
+
+Here are my experience doing it:
+- Setup:
+  - React, Create-React-App
+  - Redux, for state management
+  - React-router-dom, for client-side routing
+  - Backend, no backend for now, just a json file for products
+  - Design: plain CSS, button and form elements from Bootstrap, icons from Font Awesome
+  - All images and asset taken from Boxgreen
+  - Other tools used: redux-logger, redux-thunk
+  - Git repo: [https://github.com/yinhowlew/boxgreen-ecommerce-replica](https://github.com/yinhowlew/boxgreen-ecommerce-replica)
+  - Github Pages: [https://yinhowlew.github.io/boxgreen-ecommerce-replica/](https://yinhowlew.github.io/boxgreen-ecommerce-replica/)
+
+<br />
+
+- Concepts practised:
+  - React hooks: useState, useEffect
+  - React-redux hooks: useSelector, useDispatch
+  - Dynamic import: react.lazy/suspense
+  - localStorage for cart
+  - Functional programming
+  - edit:  integrated Firebase Auth and Firestore for signup/login/profile
+
+<br />
+
+- Timeline (put in about 3-8 hours each day while wife is asleep):
+  - Day 1 – Navbar; Landing layout
+  - Day 2 – Shop layout; Product Listing mapping; Redux setup
+  - Day 3 – Filter; Search
+  - Day 4 – Cart page layout and redux
+  - Day 5 – Product Details page; Routing; stuck at Routing issue for hours; Product Recommendation;
+  - Day 6 – Bug-fixing; Mobile-responsive;
+  - Day 7 – Refactor some code – separating logic away from components to Redux; Footer; Bug-fixing; more mobile-responsive;
+  - Day 8 – Error page; Ingredient toggle at Filter; some Code Splitting; Price Sort;
+  - Day 9 – Polish; Publish on Github Pages; Fixed routing issue caused by GH Pages;
+
+<br />
+
+Some learnings along the way – tips for beginners like me:
+
+1. Planning out the application and components well at the start is crucial.
+2. I wasted quite a few hours on simple mistakes such as using the wrong variable names and typos. To avoid that, I should have coded and tested incrementally with console.log instead of writing a whole chunk of code and trying to figure out what’s wrong at the end.
+3. Below is a rather accurate break-down of what I did – googling errors, debugging, Stack Overview, and just a whole lot of googling:
+
+<blockquote>
+Coding is:
+
+-1% actually coding<br />-40% debugging<br />-15% coffee breaks<br />-30% googling errors<br />–9% staring with your colleagues at the screen<br />–5% trying copy/pasted solutions from Stack Overflow
+
+— Catalin Pit (@catalinmpit) March 16, 2020
+</blockquote>
+
+4. When building the UI of a component, I found it a lot more effective when I planned out on a paper all the layers of containers and and their class names before going ahead with the coding.
+Using temporary background colors for different layers/sections also helped in fixing CSS issues.
+5. On the first few days, sometimes I did my **CSS Styling** like a Vegas gambler – randomly adding in margin, justify-content, align-content, align-item, width, etc, and hoping that one of them would work. Towards the end, I started to get a better grip and was able to identify the exact CSS properties to use.
+6. Debugging with console.log and redux-logger is essential. Helped in figuring out why certain data is not showing, which state is not updating correctly, whether I have passed a data mistakenly in object instead of in string, etc.
+7. If your application’s states are large and complex enough, using **Redux** to manage state felt much more elegant than prop-drilling.As a bonus, for any component you need to connect to the Store, you can use **Hooks** from react-redux such as useSelector and useDispatch in place of mapStateToProps, mapDispatchToProps, and Connect.
+8. As much as I can, I used **Functional/Pure** components instead of Class components, and used Hooks such as useEffect in place of componentDidMount. For local states, I use useState Hook which removes the need for constructor() and super(). It felt more simple and straightforward syntactically, and it reduced complexity and potential for bugs caused by Class component.
+9. A good practice is **separating business logic** from user interface code. I tried to put most logic in the action creators of Redux, but I still have some ways to go.
+
+
+
+
+Above all, the most important take-away is this:
+
+<p style={{color: "red"}}>Nothing beats building things on your own to truly accelerate your learning.</p>
+
+Every mistake, every fumble, every misstep you made will now be viscerally etched in your muscle memory; no amount of tutorials / code walkthroughs can replace that.

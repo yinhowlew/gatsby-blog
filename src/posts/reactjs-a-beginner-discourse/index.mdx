@@ -1,0 +1,158 @@
+---
+title: ReactJS – a beginner’s discourse
+description:  quick guide for newbies
+featuredImage: react.png
+tags:
+ - Coding
+date: 2020-04-15
+---
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>image from freeCodeCamp.org</p>
+
+<h3>What is ReactJS:</h3>
+
+It is a JavaScript library built by Facebook for building user interfaces.
+
+React can be used not just for web app, but also for mobile app, desktop app, VR app. But for our purpose today, we focus only on web app.
+
+<br /> 
+
+<h3>What is not ReactJS:</h3>
+
+Other JS frontend libraries such as AngularJS, VueJS, jQuery.
+
+Or using plain JavaScript without library.
+
+<br />
+
+<h3>Why is React so popular:</h3>
+
+React is great for **Single-Page-Application (SPA)**, a modern direction for web apps.
+
+SPA does not mean your app is a mere simple 1-page website.
+
+It means when user goes from /home to /shop, JavaScript dynamically renders the page without having to refetch from server and reload the entire page.
+
+As a result, the user experience is much smoother and faster.
+
+Example of popular websites built in React: Facebook, AirBnB, Netflix.
+
+<br />
+
+<h3>Benefits of React:</h3>
+
+1. React does one thing extremely well, that is rendering and updating views very fast and smoothly. The key ingredient is React's **virtual DOM** — no need to manipulate DOM, faster speed of updating (instead of updating entire DOM tree), hence better performance. This saves dev effort and result in less surface area for bugs.
+2. easy to learn and use
+3. ability to re-use components saves time
+4. each component is isolated, and any change in one doesn’t affect another; less bugs, easier to maintain, and easier for teams to work together
+5. one-direction data flow: more stable code
+6. great ecosystem and developer support
+7. a lot of tools and libraries we can use
+
+<br /> 
+
+<h3>Cons of React JS:</h3>
+
+1. high pace of new development – React and tools / frameworks in React have frequent updates / improvements. Developer needs to keep learning to stay up to date.
+2. no predefined way of structuring app e.g. with angularJS, it has services, controllers, views – beginner developer might have to rewrite app structure esp. in complex application.
+
+<br /> 
+
+<h3>Key Concepts:</h3>
+<br /> 
+
+**Declarative and Virtual DOM**
+
+React is **declarative** – it means you tell the browser exactly **what** you want, instead of giving it exact step-by-step instructions of **how** to do.
+
+React has a virtual DOM that takes care of interactions with the DOM. It makes DOM changes in predictable ways that is easy to scale and manage. We just need to tell React we want a component to be rendered in a specific way.
+
+Unlike the real DOM, the virtual DOM does the minimum amount of DOM manipulation to keep components up-to-date. It only updates the part which has been updated. It is one of the reasons why React app seems faster and cleaner.
+
+The opposite of declarative is **imperative** where you need to look up DOM elements and manipulate them.
+
+**Components**
+
+Components are the building blocks for a React application. A component can be as small as a button, and as large as an entire app.
+
+In essence, components are independent, re-usable pieces of code that produces an interface. 
+
+You can build / import components and re-use them across your application, and it gives us an immense amount of flexibility and scalability.
+
+Concepts to learn:
+
+- Class (or Stateful, Container) components  vs Functional (or Stateless, Presentational) components
+- Parent vs Child component
+- Lifecycle methods e.g. componentDidMount()
+
+<br /> 
+
+**Data flow**
+
+Data in React flows one-way: top to bottom, parent to child.
+
+Components are **not** aware of each other’s data – unless some data are specifically passed down to a parent’s child components.
+
+When there’s changes in data in a component, only its children will be aware (if the data is made accessible to its children). Likewise, a child is not aware of anything else in our app except what comes down from parent.
+
+Words you will hear a lot of are **States** and **Props**.
+
+States are data that a component holds.
+
+- States are mutable – meaning they can be changed.
+- When a component holds states, no other component is aware or has access to them, except for its child components if states are passed down as props.
+
+Props are data that a child receives from parent to render its component.
+
+- Props are immutable – a child can only read and can’t change props (value or function) passed down to it.
+
+There are 2 ways to change a state:
+
+- Parent can change its own states using this.setState() function/method.
+- Child can trigger a change in parent’s state using callback functions that are passed down as props.
+  - E.g. if a parent holds a state called “count” and passes a callback function called increaseCount() to its child, the child can invoke the callback function to change “count” state in the parent.
+ 
+<br />
+<h3>Pre-requisite knowledge:</h3>
+
+You will need to know JavaScript (especially ES6), HTML and CSS.
+
+React uses a modified version of JavaScript called JSX, which allows you to write HTML along side with your JavaScript. It is pretty intuitive to get used to once you have tried your hands on it.
+
+A few minor details to note in JSX:
+
+1. “className” is used instead of “class” for adding CSS classes
+2. Properties and methods in JSX are camelCase – “onclick” will become “onClick”.
+3. Self-closing tags must end in a slash – e.g. `<img />`
+ 
+<br />
+<h3>Setup:</h3>
+
+As a beginner, you should use create-react-app (CRA). It comes with all the configurations ready and setup (e.g. webpack, Babel), and you just need to start coding and deploy when ready.
+
+Alternatives of CRA are Gatsby and Next, or not using any framework.
+
+<br />
+<h3>Useful tools:</h3>
+
+Once you have practised how to build a simple React app (can be a counter, a clock, etc), you can start looking at these tools/libraries to build more powerful app.
+
+- state management:  React-Redux
+
+- react hooks:  useEffect, useState(), useContext()
+
+- react-redux-hooks: useSelector(), useDispatch()
+
+- client-side routing:  React-Router-Dom
+
+- re-usable components:  reactjsexamples,  bit.dev
+
+- dev tool:  React Dev Tool on Chrome, ES-lint
+
+- UI component libraries: material-ui, semantic-ui, bootstrap
+
+- CSS libraries:  styled-components
+
+- frameworks: Gatsby.js, Next.js
+
+
+IMPORTANT NOTE:  before adding any library or tool, note that it will add weight and complexity and dependency to your application. So add only if you need it.

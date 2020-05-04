@@ -1,0 +1,135 @@
+---
+title: Test Blog with Code and Image
+date: 2019-11-07
+description: all the things you can do with mdx
+tags:
+  - Coding
+featuredImage: defence-against-the-dark-arts.jpg
+  
+---
+import SpotifyPlayer from "./SpotifyPlayer";
+
+<br />
+
+1)
+above is featuredImage from frontmatter
+<br /> 
+
+2)  code syntax
+```jsx
+// this is jsx
+const person = {
+  first: 'testt',
+  last: 'lew',
+  country: 'US',
+  city: 'New York'
+};
+const first = person.first;
+const last = person.last;
+```
+
+<br />
+
+```python
+## python
+def multiply (a,b):
+	return a * b
+```
+
+<br /> 
+3)
+<div style={{ padding: '10px 30px', backgroundColor: 'tomato', color: 'Green' }}>
+  <h2 style={{ margin: "20px", "border-style": "solid" }}>this is written in JSX</h2>
+</div>
+<br /> 
+
+4)
+> this is a code block or tab.  To custom the style
+
+or
+<blockquote> also a code block </blockquote>
+
+<br /> 
+
+5)
+inline-image 1
+![Potions Class](./potions.jpg)
+
+<br /> 
+5b)
+inline-image with img tag 3 
+
+<img src="https://www.w3schools.com/w3css/img_snowtops.jpg" alt="yaya" width="480" height="320" style="display: block; margin-left: auto; margin-right: auto" />
+
+note:  
+- image from gatsby image auto resize, but can't style easily (even if using img tag);
+- somehow img tag in mdx can't accept jsx style, but above works
+
+<br /> 
+
+6)
+
+this is a list
+- fruit
+  1. banana
+  2. apple
+- color
+  - red
+  - blue
+    - deep blue
+
+<br /> 
+
+7)  
+# this is h1
+## this is h2
+*emphasis*  or _emphasis_
+
+**strong** 
+
+
+***strong and emphasis***
+
+
+~~strikethrough~~  
+
+--- 
+break
+
+`what is inline code`
+`<img />` this uses inline code
+
+<p style={{fontSize: '50px', lineHeight: 1.6, color: "red"}}> test para </p>
+
+
+<br /> 
+7
+table
+
+| Number | Title                                    | Year |
+| ------ | ---------------------------------------- | ---: |
+| 1      | Harry Potter and the Philosopher’s Stone | 2001 |
+| 2      | Harry Potter and the Chamber of Secrets  | 2002 |
+| 3      | Harry Potter and the Prisoner of Azkaban | 2004 |
+
+
+<br /> 
+8) link / a tag
+
+[View raw](https://yinhow.wordpress.com)
+
+<br />
+9)
+
+Here will a React component go:
+
+<SpotifyPlayer
+  uri="spotify:user:bbcamerica:playlist:3w18u69NplCpXVG4fQG726"
+  size="large"
+  theme="black"
+  view="list"
+/>
+
+
+
+

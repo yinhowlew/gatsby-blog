@@ -1,0 +1,161 @@
+---
+title: Favourite JS Syntax
+description:  note to self
+featuredImage: js-unsplash.jpg
+tags:
+ - Coding
+date: 2020-03-28
+---
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>Photo by Irvan Smith on Unsplash</p>
+
+JavaScript both fascinates and frustrates me as a beginner.
+
+Here are some JS syntax that I find elegant and syntactically lucid for a newbie.
+
+Note: some of the examples will be shown in React’s JSX, but the syntactic concept applies to plain JavaScript as well.
+
+<br /> 
+
+<h3>1) Ternary operator</h3>
+
+A more elegant and simple way of writing “if else” statement.
+
+Syntax -  <br />
+(condition X) <br />
+? (expression if X is truthy) <br />
+: (expression if X is falsy)
+
+Note that the operator can only execute expressions, not statements (e.g. return x)  .
+
+Sample use cases:
+
+- display different components or UI elements based on state
+```jsx
+{ !isLoading 
+	? 
+	<Layout>your content</Layout> 
+	//if isLoading is false
+	:
+	<Spinner text="Loading your cart.." />  
+	//if isLoading is true	
+}
+```
+
+- toggle different class names based on state
+```jsx
+<img
+	className={
+	activeThumbnail 
+	? 'active-thumbnail' : 'not-active-thumbnail'}
+	onClick={() => 	setActiveThumbnail(true)}
+>
+```
+
+- logic for updating cart item quantity
+```jsx
+(count === 0)
+? removeFromCart(cartItems, product)
+: cartItems.forEach(cp => {
+	if (cp.id === product.id) {
+		cp.count = count;
+	}
+})
+```
+
+Bonus:  ternary operators can be chained as well similar to for if/else if/else if/else chain.
+
+<br />
+ 
+
+<h3>2) Short-circuit evaluation / conditional</h3>
+
+**AND &&**
+
+A && B    //  if A is truthy, B will be evaluated and expressed
+
+example:   we show this UI only if there is item in our cart
+
+```jsx
+{ cartItems.length > 0 &&
+	<div>some UI</div>	
+}
+```
+
+which is essentially the conventional IF statement.
+
+**OR ||**
+
+A || B    //  B will only be evaluated and expressed if A is falsy
+
+example:   this will display news if there is news. else, it will display a message
+
+```jsx
+<div>
+	{this.state.news} || "you have no news"
+</div>
+```
+
+<br /> 
+
+<h3>3)  spread operator (…)</h3>
+
+There are many different uses for object/array spread operator.
+
+A use case I like is a clear and easy way to create or copy an object, instead of using Object.assign().
+
+example 1:  in a Redux reducer function to create new state
+
+```jsx
+case SEARCH_PRODUCTS:   
+	return  {
+		...state,
+		filteredProducts: action.payload
+	}					
+case SORT_PRODUCTS:   
+	return  {
+		...state,
+		price: action.payload.price,
+		filteredProducts: action.payload.filteredProducts
+	}		
+```
+
+example 2:  creating a new array from different arrays instead of using concat()
+
+```js
+newArray = [...array1, ...array2, ...array3];
+```
+
+example 3:  adding items into an array in any order you need, instead of limiting to adding at the start or end of array using push() or unshift():
+
+```js
+let pokemon = ['a','b','d'];
+pokemon = [...pokemon, 'e','f','g'] ;
+//quick way to push items to array 
+// technically creating new array
+pokemon = ['e', ...pokemon, 'f', 'g'];
+//insert items any where 
+```
+
+example 4: assigning variables to elements in an array via **Array Destructuring** (similar can be done with Object Destructuring)
+
+```js
+const rgb = [255, 200, 0];
+const [red, green, blue] = rgb;
+console.log(`R: ${red}, G: ${green}, B: ${blue}`); 
+// R: 255, G: 200, B: 0
+```
+ 
+<br /> 
+
+<h3>4) array.map()</h3>
+
+Array.map() (not to be confused with [Map object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)) can be used to iterate over each array’s items and apply a function over them: <br />
+e.g. let newArray = oldArray.map( a => a+1 )
+
+example:  from a "products" array, map out UI for each product in a product listing page
+```jsx
+const productItems = products.map(product => (
+	<div className='card' key='product.id'>
+		<Link to={`/shop/product/${product.id}`}>
+		...	
+```
