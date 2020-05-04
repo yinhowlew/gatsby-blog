@@ -9,7 +9,7 @@ import SEO from '../components/SEO';
 const About = ({ data }) => {
 	return (
 	  <Layout>
-	    <SEO title="About me" />
+	    <SEO title="About" />
 	    <div>
 	    	<h3>About this blog</h3>
 		    <p>“Strong opinions, loosely held” is a framework of thinking that I aspire towards.</p>
