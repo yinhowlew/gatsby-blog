@@ -1,0 +1,321 @@
+---
+title: Firebase - a starter's guide
+description:  simple Firebase serverless implementation
+featuredImage: firebase.jpg
+tags:
+ - Coding
+date: 2020-04-10
+---
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>Unrelated photo by Pathum Danthanarayana on Unsplash</p>
+
+Dipped my toe into Google’s Firebase to explore more on serverless.
+
+In particular, I integrated Firebase Authentication and Firestore (their cloud database) into my frontend project (built with React and Redux).
+
+The simple features I set out to build:
+
+- user is able to sign up
+- user is able to login
+- user is able to view profile
+- user is able to update profile
+
+<br />
+
+Here’s a quick starter’s guide:
+
+<h3>SETUP</h3>
+
+go to Firebase dashboard, create your app. and setup the services you need (authentication, firestore, etc).  remember to get your project ID.
+
+<h3>CONFIG</h3>
+
+create a config file below:
+
+```jsx
+// import firebase and necessary services.
+import firebase from “firebase/app”;    
+import “firebase/auth”;
+//your API keys
+import “firebase/firestore”;const firebaseConfig = {     
+      apiKey: “…”,
+      authDomain: “….firebaseapp.com”,
+      databaseURL: “….firebaseio.com”,
+      storageBucket: ‘….appspot.com’,
+      projectId: “…”,
+//initialise firebase with your keys/ids
+};firebase.initializeApp(firebaseConfig);    
+// export to use easily in components/redux actions
+export default firebase;    
+```
+
+<h3>SIGNUP ON AUTH</h3>
+
+in our signup function, there are two main things we need to do:
+1. create user with Firebase Authentication
+2. create user with Firestore
+
+Note that you need to create user with both, otherwise even though user can signup/login via Auth,  you don’t have a user document in our Firestore database.
+
+Here, we start with the signup function to create user on Auth using email/password (Auth has integration with social media login as well).
+
+```jsx
+firebase.auth().createUserWithEmailAndPassword(email, password)
+```
+
+We will connect with Firestore later in the guide.
+
+<h3>LOGIN</h3>
+
+Just need to call this function and pass the right arguments: 
+```jsx
+firebase.auth().signInWithEmailAndPassword(email, password)
+```
+<h3>AUTH LISTENER</h3>
+
+We are setting up an Auth Listener to check if user is logged in (so that we can greet the user, allow user access to certain routes, etc). With the Auth Listener, we can dispatch an action to update user’s state.
+
+We can call the authListener function below using componentDidMount or useEffect hook at App.js:
+
+```jsx
+const authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        dispatch(allActions.userActions.setUserAuth(user.displayName))
+    } else {
+        dispatch(allActions.userActions.setUserAuth(null))
+    }
+   })
+ }  
+ // setUserAuth is our redux action to update user’s state to greet user
+```
+
+<h3>ADD VALIDATION WHEN SIGNING UP</h3>
+
+in our signup function, before createUserWithEmailAndPassword is executed, we can add email / password / ToS checkbox validation :
+
+```jsx
+ const phone = document.getElementById(‘inputphone’).value;
+ const tos = document.getElementById(‘tos-privacy-checkbox’).checked;      
+ 
+ if (phone.length < 4) {
+    alert(‘Please enter a valid phone number.’);
+    return;
+  }   
+  // if you prefer to style your alert/error message using an error message state:
+ if (!tos) {
+      return dispatch({
+         type: ERROR_MESSAGE,
+         payload: “Please accept Terms and Privacy to proceed”
+      })
+  }        
+```
+
+<h3>ADD PROFILE TO AUTH WHEN SIGNING UP</h3>
+
+Firebase Auth has basic user properties (displayName, phoneNumber) that we can populate for our use.
+
+We need to chain auth’s updateProfile after _createUserWithEmailAndPassword_. 
+
+Else, our user in Auth will only have email and password.
+
+```jsx
+firebase.auth().createUserWithEmailAndPassword(email, password)
+.then(function(result) {
+ return result.user.updateProfile({
+   displayName: name,
+  phoneNumber: phone
+ })
+})
+```
+
+<h3>REDIRECT AFTER LOGIN / IF LOGIN</h3>
+
+after user login, we want to redirect user to somewhere. Here we are using react-router-dom’s Redirect:
+
+in Login component, add:
+
+```jsx
+if (user) {   //refer to user state that we populate upon signup or via auth listener
+    return(<Redirect to=”/shop” />)
+} 
+```
+
+the above logic will apply if user tries to go to /login while logged-in as well.
+
+do the same for our Signup component.
+
+
+<h3>REDIRECT AFTER SIGNUP</h3>
+
+after Signup success, Firebase should automatically login user, and user will be redirected since auth listener will update user state.
+
+Issue faced:
+
+Initially, we can see the user’s state updated only after manual refresh. For some reason, our auth listener doesn’t trigger right away after user signs up, and still sets our user’s state null.  It could be because we are not using the useEffect hook correctly.
+
+Anyway, as a hack/manual fix, in our Signup function, after createUserWithEmailAndPassword(), we add the following to manually update user’s state.
+
+```jsx
+  .then(() => dispatch({
+         type: SET_USER_AUTH,
+        payload: name
+   }))
+```
+
+<h3>SIGN UP SUCCESS MESSAGE</h3>
+
+after signup success in signup action, after createUserWithEmailAndPassword, add:   
+
+```jsx
+.then(alert(“sign up success yay!”))
+```
+
+<h3>LOGOUT USER</h3>
+
+pretty straight forward function.
+
+```jsx
+const logOutUser = () => (dispatch) => {
+     firebase.auth().signOut().then(function() {
+      // if you want to do something, else leave blank
+     }).catch(function(error) {
+         alert(error)
+     });
+}
+```
+
+<h3>CONNECTING TO DB (FIRESTORE)</h3>
+
+We have only touched Authentication thus far. We will need to connect to Firestore (our serverless DB of choice here) if we want to store more user data e.g. wishlist, purchase history, etc.
+
+Note that Firestore uses NoSQL. The recommended way is for each user to be a document in a collection called “users”
+
+In the same config file, add:
+```jsx
+import “firebase/firestore”;
+firebase.firestore();
+```
+
+Important:  on Firestore dashboard, update Firestore security rule (if it was locked down). For our testing purpose, we can set “allow read, write: if true”;
+
+Read more [here](https://medium.com/@khreniak/cloud-firestore-security-rules-basics-fac6b6bea18e).
+
+
+<h3>UPDATE DATABASE WHEN USER SIGNUP</h3>
+
+Note:  we need to update user to Firestore/DB when user sign up. Else, user data will stay at Auth only.
+
+One way is to use Cloud Function that will be event-triggered to update Firestore on the background.
+
+Another is to chain it in the userSignup function after createUserWithEmailAndPassword.
+
+Initially, we chained it at the end of the signup function:
+
+```jsx
+//FAILED attempt: 
+firebase.auth().createUserWithEmailAndPassword(email, password)
+     //code omitted for update state
+     //alert success
+     //check error
+     .then(function() {
+       firebase.firestore().collection(‘users’).add({
+       email: email,
+       name: name,
+       phone: phone,
+       })
+   })
+```
+
+With this approach, we encountered an issue:
+UID of Authentication is different from UID of Firestore user’s document title;
+
+Due to the async nature and latency of _createUserWithEmailAndPassword_, we were not able to directly access _firebase.auth().currentUser.uid_  during user sign up process as it returns null. 
+
+Hence even though we managed to create a user in Firestore db, we could not use auth’s UID as document ID, i.e. the same user has different UID in Auth and in Firestore, which is not ideal.
+
+SOLUTION:
+
+previously, we add user to DB only at the end of the chain of asynchronous function.
+
+our fix is to add user to DB immediately while we have access to Auth’s UID in the object returned by _createUserWithEmailAndPassword_:
+
+```jsx
+const userSignupSubmit = () => (dispatch) => {
+    // omitted code for field validations
+    // action 1
+    firebase.auth().createUserWithEmailAndPassword(email, password)  
+      .then(function(result) {
+      		// action 2
+            firebase.firestore().collection(‘users’).doc(result.user.uid).set({  
+              email: email,
+              name: name,
+              phone: phone,
+            });
+           // action 3
+           return result.user.updateProfile({   
+              displayName: name,
+             phoneNumber: phone
+          })
+      })
+}
+```
+To summarise, here are the 3 main actions in our signup function:
+
+- action 1:   create user with firebase auth
+- action 2 (async):   when we get the returned object (result), we now have access to result.user.uid which we can use to create a new user document 
+- action 3 (async)   with access to the returned object from action 1, we can update some of its properties, ensuring that our Auth user has displayName and phoneNumber. This step is optional if you are not using these properties from Auth.
+
+
+<h3>GET USER PROFILE</h3>
+using auth’s UID to fetch profile and update profile state from firestore database:
+
+```jsx
+const getProfile = () => (dispatch) => {
+    const userUid = firebase.auth().currentUser.uid;    
+    firebase.firestore().collection(‘users’).doc(userUid).get()
+    .then(function(user) {
+        if (user.exists) {
+            const email = user.data().email;
+            const name = user.data().name
+            const phone = user.data().phone
+            return dispatch({
+                type: READ_PROFILE,
+                payload: {
+                    email: email,
+                    name: name,
+                    phone: phone
+                }
+            })
+        } else {
+            console.log(“user doesn’t exist”)  //handle later
+        }
+    })
+}
+```
+
+<h3>UPDATE USER PROFILE</h3>
+
+remember to update both the Auth and Firestore DB.
+
+```jsx
+const updateProfile = () => (dispatch) => {
+      …
+      const user = firebase.auth().currentUser;
+
+      user.updateProfile({    // updating profile in AUTH
+           displayName: name,
+           phoneNumber: phone
+      })
+      .then(function() {      // updating Firestore DB
+           firebase.firestore().collection(‘users’).doc(user.uid).update({
+               name: name,
+               phone: phone,
+           });
+      })
+     ….
+}
+```
+
+<br />
+That's all for our maiden attempt at using Firebase. It works, though there are probably more optimal (and secure) ways to implement it.
+

@@ -1,0 +1,74 @@
+---
+title: Serverless
+description:  what is a serverless architecture?
+featuredImage: serverless.jpg
+tags:
+ - Coding
+ - Tech
+date: 2020-04-10
+---
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>Photo by Kate Townsend on Unsplash</p>
+
+Recently explored more on Serverless architecture.
+
+Serverless is the latest part of the progression in architecture trend:
+Monolith → Microservices → Serverless
+
+In essence, serverless architecture incorporates Backend-as-a-Service (BaaS) services and/or codes run in Function-as-a-Service (FaaS) services, such that we have no need for a centralised dedicated server software and hardware.
+
+Martin Fowler wrote a great in-depth article on [this](https://martinfowler.com/articles/serverless.html).
+
+<br />
+
+<h3>Traditional monolithic architecture</h3>
+
+<img src="https://martinfowler.com/articles/serverless/ps.svg" />
+
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>image credit: https://martinfowler.com/articles/serverless.html</p>
+
+Traditionally, applications were built on a monolithic architecture where we have a always-on centralised server application that manages all backend functions and logic - authentication, search, cronjob, page navigation, etc. All our codes exists inside a single codebase, and the entire application with all our modules are deployed at the same time. The challenge comes when the application grows larger and the infrastructure becomes more complicated to manage with additional modules, dependencies, and moving parts and bugs.
+
+<br />
+
+<h3>Example Serverless architecture</h3>
+
+<img src="https://martinfowler.com/articles/serverless/sps.svg" />
+
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>image credit: https://martinfowler.com/articles/serverless.html</p>
+
+Serverless is a recent architecture trend that moves away from monolithic architecture thanks to growing sophistication of 3rd-party cloud platform and services e.g. AWS, Azure, Firebase. It removes the need for a centralised always-on server component, and instead abstracts away the different backend modules to BaaS and FaaS.
+
+<br/>
+
+BaaS examples:
+- cloud databases (Firebase Firestore, AWS RDS)
+- authentication (AWS Incognito, Firebase Authentication, Auth0)
+- AWS API Gateway
+
+<br/>
+
+FaaS examples:
+- AWS Lambda, Google's Cloud Function
+- e.g. finalising Stripe payment for customer, cronjob, sending email
+- It allows us to write discrete pieces of logic and export them to these cloud functions that are event-triggered
+- with FaaS, the provider handles all underlying resource provisioning and allocation
+
+<br/>
+
+Benefits of Serverless:
+- architecture is more flexible and amenable to changes
+- better division of concern
+- reduced engineering time and cost
+- reduced need of managing underlying infrastructure
+
+<br/>
+
+Trade-off of Serverless:
+- more moving parts to monitor
+- significant reliance (incl. security) on service provider
+
+<br/> 
+
+Do keep in mind that serverless architecture is not the end-all-be-all solution. There are still cases where Monolithic architecture or Microservices architecture can be a better fit.
+
+
