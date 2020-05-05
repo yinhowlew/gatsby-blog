@@ -1,5 +1,6 @@
 import React from "react"
 // import styles from "../styles/layout.module.css";
+import '../utils/global.css'
 import { Link } from "gatsby";
 // import { ThemeToggler } from 'gatsby-plugin-dark-mode';
 import Toggle from './Toggle/Toggle';
