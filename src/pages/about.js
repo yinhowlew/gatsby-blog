@@ -15,6 +15,7 @@ const About = ({ data }) => {
 	    	<h3>About this blog</h3>
 		    <p>“Strong opinions, loosely held” is a framework of thinking that I aspire towards.</p>
 		    <p>I like to think through issues deeply and develop solid arguments and form firm theoretical grounds (Strong Opinions). But it is also important not to be overly attached to our thinking (Loosely Held) – especially when new information arises that challenges some of our prior assumptions. </p>	    	
+	    	<p>This blog is written primarily for myself. See here for more explanation.</p>
 	    	<h3>About me</h3>
 	    	<p>My professional journey converges on building things - tech products, startups, teams, companies.</p> 
 	    	<p>Previously at a tech consulting firm, I led the Consumer Technologies division, specialising in B2C Engagement and Loyalty. I advised clients on product strategy, and built a team of developers and designers to execute digital products.</p>
