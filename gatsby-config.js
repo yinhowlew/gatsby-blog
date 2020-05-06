@@ -8,6 +8,7 @@ module.exports = {
   siteMetadata: {
     title: `Strong Opinions, Loosely Held`,
     author: 'yinhow',
+    siteUrl: 'https://yinhow.netlify.app/',
     description: 'yinhow personal blog built with gatsby',
     keywords: ['tech','product','startup','coding','poker']
   },
@@ -85,5 +86,7 @@ module.exports = {
         trackingId: "UA-165622494-1",
       },
     },
+    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-robots-txt',
   ],
 }
