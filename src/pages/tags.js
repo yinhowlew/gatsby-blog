@@ -19,7 +19,7 @@ const TagsPage = ({
     <div>
       <h1>Tags</h1>
         <div  style={{ display: "flex", flexDirection: "row"}}>
-        {group.map(tag => (
+        {group.sort(function(a, b){return b.totalCount-a.totalCount}).map(tag => (
             <Link key={tag.fieldValue} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
               <Tag>{tag.fieldValue} ({tag.totalCount})</Tag>
             </Link>

@@ -8,11 +8,13 @@ import Img from "gatsby-image";
 import CodeBlock from "../components/CodeBlock";
 import Tag from "../components/Tag/Tag";
 
-// const shortcodes = { Link } // Provide any common components here
+
 const components = {
   pre: props => <div {...props} />,
-  code: CodeBlock
+  code: CodeBlock,
+  Link
 }
+// add any components we want to use in posts up e.g. Link
 // const components = {
 //   pre: props => <div {...props} />,
 //   code: props => <pre style={{color: 'black', "background-color": 'rgb(246,246,246'}} {...props} />

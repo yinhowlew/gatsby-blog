@@ -29,7 +29,7 @@ export default ({ data }) => {
 
         <h3>Topics</h3>
         <div style={style.tagGroup}> 
-        	{data.allMdx.group.map(tag => 
+        	{data.allMdx.group.sort(function(a, b){return b.totalCount-a.totalCount}).map(tag => 
         		<Link
         			to={`/tags/${kebabCase(tag.fieldValue)}/`} 
         			key={tag.fieldValue} 
@@ -61,6 +61,7 @@ export default ({ data }) => {
   )
 }
 // (sort: { fields: [frontmatter___date], order: DESC })
+//       group(field: frontmatter___tags) {
 export const query = graphql`
   query {
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
