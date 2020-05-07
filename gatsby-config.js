@@ -8,7 +8,7 @@ module.exports = {
   siteMetadata: {
     title: `Strong Opinions, Loosely Held`,
     author: 'yinhow',
-    siteUrl: 'https://yinhow.netlify.app/',
+    siteUrl: 'https://yinhow.netlify.app',
     description: 'yinhow personal blog built with gatsby',
     keywords: ['tech','product','startup','coding','poker']
   },
