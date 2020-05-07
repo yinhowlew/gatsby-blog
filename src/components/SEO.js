@@ -88,6 +88,10 @@ function SEO({ description, lang, meta, title, image:metaImage }) {
                 name: "twitter:card",
                 content: "summary_large_image",
               },
+              {
+                name: "twitter:image",
+                content: image,
+              },              
             ]
           : [
               {
