@@ -30,6 +30,9 @@ export default ({ data, props, pageContext }) => {
       <Tag>{tag}</Tag>
     </Link>
   ))
+  const image = post.frontmatter.featuredImage
+  ? post.frontmatter.featuredImage.childImageSharp.resize
+  : null
 
   const style = {
     spread: {
@@ -48,7 +51,11 @@ export default ({ data, props, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title={post.frontmatter.title} description={post.frontmatter.description} />      
+      <SEO 
+        title={post.frontmatter.title} 
+        description={post.frontmatter.description}
+        image={image} 
+      />      
       <div>
         <h1 style={{ color: 'var(--header)' }}>{post.frontmatter.title}</h1>
         <header style={style.spread}>
@@ -114,6 +121,11 @@ export const query = graphql`
           childImageSharp {
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid
+            }
+            resize(width: 1200) {
+              src
+              height
+              width
             }
           }
         }        
