@@ -7,7 +7,7 @@ import SEO from '../components/SEO';
 import Img from "gatsby-image";
 import CodeBlock from "../components/CodeBlock";
 import Tag from "../components/Tag/Tag";
-
+import Heart from '../components/Heart';
 
 const components = {
   pre: props => <div {...props} />,
@@ -40,13 +40,39 @@ export default ({ data, props, pageContext }) => {
       justifyContent: "space-between"
     },
     nav: { 
-      display: "flex", 
-      justifyContent: "space-between",
+      display: "flex",
+      width: "100%", 
+      // justifyContent: "space-between",
       // marginBottom: "20px"
     },
+    navLeft: {
+      width: "33.3%",
+      textAlign: "left",
+    },    
+    navMid: {
+      width: "33.3%",
+      textAlign: "center"
+    },    
+    navRight: {
+      width: "33.3%",
+      textAlign: "right",
+    },
     navIndividual: {
-      maxWidth: "35%"
-    }    
+      width: "33.3%"
+    }                  
+  }
+
+  const generateRandomSlug = () => {
+    const totalCount = data.allMdx.totalCount;
+    let x = Math.floor((Math.random() * totalCount)); //generate random between 0 to excluding totalCount    
+    let destination = data.allMdx.edges[x].node.fields.slug;
+    
+    while (destination === post.fields.slug) {
+      x = Math.floor((Math.random() * totalCount));
+      destination = data.allMdx.edges[x].node.fields.slug;
+    }
+
+    return destination
   }
 
   return (
@@ -77,23 +103,33 @@ export default ({ data, props, pageContext }) => {
             <MDXRenderer>{post.body}</MDXRenderer>
           </main>
         </MDXProvider>  
+
         <br />
+        <hr />
+        <h3>Thank you for reading</h3>
+        <p>If you have comment or feedback, please email me at yinhowlew@gmail.com.</p>
+        <p>If you like this article, please click on the meaningless heart icon below.</p>
+        <Heart />
         <br />
+
         <nav style={style.nav}>
           {prev // if there's prev
             ?  
-            <Link style={style.navIndividual} to={prev.node.fields.slug}>
+            <Link style={style.navLeft} to={prev.node.fields.slug}>
              ← {prev.node.frontmatter.title}
             </Link>
             :
-            <div></div>}
+            <div style={style.navLeft}></div>}
+          <Link style={style.navMid} to={generateRandomSlug()}>
+            Surprise me
+          </Link>
           {next 
             ?  // if there's next
-            <Link style={style.navIndividual} to={next.node.fields.slug}>
+            <Link style={style.navRight} to={next.node.fields.slug}>
               → {next.node.frontmatter.title}
             </Link>
             :
-            <div></div>}          
+            <div style={style.navLeft}></div>}          
         </nav>
  
       </div>
@@ -130,7 +166,20 @@ export const query = graphql`
           }
         }        
       }
+      fields {
+        slug
+      }
       body
     }
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount  #unused now for total posts
+      edges {
+        node {
+          fields {
+            slug
+          }
+        }
+      }
+    }      
   }
 `;

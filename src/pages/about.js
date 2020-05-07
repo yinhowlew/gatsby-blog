@@ -5,7 +5,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import Img from "gatsby-image";
 import SEO from '../components/SEO';
-// import Gradient from '../components/Gradient';
+// import Heart from '../components/Heart';
 
 const About = ({ data }) => {
 	return (
@@ -15,7 +15,7 @@ const About = ({ data }) => {
 	    	<h3>About this blog</h3>
 		    <p>“Strong opinions, loosely held” is a framework of thinking that I aspire towards.</p>
 		    <p>I like to think through issues deeply and develop solid arguments and form firm theoretical grounds (Strong Opinions). But it is also important not to be overly attached to our thinking (Loosely Held) – especially when new information arises that challenges some of our prior assumptions. </p>	    	
-	    	<p>This blog is written primarily for myself. See <Link to="hello-world" key="hello-world">here</Link> for more explanation.</p>
+	    	<p>This blog is written primarily for myself. See <Link to="/hello-world" key="hello-world">here</Link> for more explanation.</p>
 	    	<h3>About me</h3>
 	    	<p>My professional journey converges on building things - tech products, startups, teams, companies.</p> 
 	    	<p>Previously at a tech consulting firm in Singapore, I led the Consumer Technologies division, specialising in B2C Engagement and Loyalty. I advised clients on product strategy, and built a team of developers and designers to execute digital products.</p>
@@ -31,8 +31,7 @@ const About = ({ data }) => {
 	    	<p>Credit: dark theme toggle and implementation from Dan Abramov</p>
 
 		    <h3>Links</h3>
-		    <p>work-related writings on <a href='https://medium.com/@yinhow'>Medium</a></p>
-		    <p>my nascent <a href='https://github.com/yinhowlew'>Github</a></p>
+		    <p>work-related writings on <a href='https://medium.com/@yinhow'>Medium.</a></p>
 		    <p>I also write about poker <span><a href="https://positiveev.wordpress.com">here</a></span>. </p>
 		</main> 
 	  </Layout>		

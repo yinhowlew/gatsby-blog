@@ -50,7 +50,7 @@ export default ({ data }) => {
               to={node.fields.slug}
             >
               <h3 className="home-title">
-                {node.frontmatter.title}
+                  {node.frontmatter.title}
               </h3>
             </Link>
             <div style={{ fontSize: '0.8em' }}>
@@ -78,6 +78,7 @@ export const query = graphql`
             description
             date(formatString: "MMMM DD, YYYY")
           }
+          excerpt
           fields {
             slug
           }
