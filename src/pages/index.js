@@ -15,10 +15,14 @@ const style = {
 	},
 }
 
+
 export default ({ data }) => {
+
+  const seoImage = data.socialseo.childImageSharp.fluid;
+
   return (
     <Layout>
-      <SEO title="Home" />   
+      <SEO title="Home" image={seoImage}/>   
       <div>
         <h1>
           Strong Opinions, Loosely Held
@@ -26,7 +30,6 @@ export default ({ data }) => {
         <br />
         <Intro data={data.headshot.childImageSharp.fixed} />
         
-
         <h3>Topics</h3>
         <div style={style.tagGroup}> 
         	{data.allMdx.group.sort(function(a, b){return b.totalCount-a.totalCount}).map(tag => 
@@ -92,6 +95,13 @@ export const query = graphql`
         }
       }
     }
+    socialseo: file(relativePath: { eq: "coding.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 800) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }    
   }
 `
 

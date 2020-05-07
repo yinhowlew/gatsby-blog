@@ -52,10 +52,10 @@ function SEO({ description, lang, meta, title, image:metaImage }) {
           property: `og:type`,
           content: `website`,
         },
-        {
-          name: `twitter:card`,   // edit later
-          content: `summary`,
-        },
+        // {
+        //   name: `twitter:card`,   // edit later
+        //   content: `summary`,
+        // },
         {
           name: `twitter:creator`,
           content: site.siteMetadata.author,
