@@ -18,7 +18,7 @@ const style = {
 
 export default ({ data }) => {
 
-  const seoImage = data.socialseo.childImageSharp.fluid;
+  const seoImage = data.socialseo.childImageSharp.resize;
 
   return (
     <Layout>
@@ -97,8 +97,10 @@ export const query = graphql`
     }
     socialseo: file(relativePath: { eq: "coding.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 800) {
-          ...GatsbyImageSharpFluid
+        resize(width: 1200) {
+          src
+          height
+          width
         }
       }
     }    
