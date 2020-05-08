@@ -371,3 +371,19 @@ pre[data-line] {
 .react-toggle:active .react-toggle-thumb {
   box-shadow: 0px 0px 5px 5px #1ca086;
 }
+
+.intro-content {
+  width: 70%;
+}
+
+@media only screen and (max-width: 550px) {
+  .intro-content {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .intro-content {
+    width: 50%;
+  }
+}

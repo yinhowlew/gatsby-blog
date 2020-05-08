@@ -4,9 +4,8 @@ import '../utils/global.css'
 import Layout from "../components/Layout"
 import Intro from "../components/Intro"
 import Tag from "../components/Tag/Tag"
-import kebabCase from "lodash/kebabCase"  // necessary?
+// import kebabCase from "lodash/kebabCase" 
 import SEO from '../components/SEO';
-// import Img from "gatsby-image";
 
 const style = {
 	tagGroup: {
@@ -28,13 +27,13 @@ export default ({ data }) => {
           Strong Opinions, Loosely Held
         </h1>
         <br />
-        <Intro data={data.headshot.childImageSharp.fixed} />
+        <Intro data={data.headshot.childImageSharp.fluid} />
         
         <h3>Topics</h3>
         <div style={style.tagGroup}> 
         	{data.allMdx.group.sort(function(a, b){return b.totalCount-a.totalCount}).map(tag => 
         		<Link
-        			to={`/tags/${kebabCase(tag.fieldValue)}/`} 
+        			to={`/tags/${tag.fieldValue.toLowerCase()}/`} 
         			key={tag.fieldValue} 
         		>
         			<Tag>
@@ -91,8 +90,8 @@ export const query = graphql`
     }
     headshot: file(relativePath: { eq: "yh-header-small.png" }) {
       childImageSharp {
-        fixed(width: 150, height: 155) {   # note this is FIXED, not FLUID
-          ...GatsbyImageSharpFixed
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
