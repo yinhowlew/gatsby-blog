@@ -73,12 +73,14 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
+
+  //path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
   // Extract tag data from query
   const tags = result.data.tagsGroup.group
   // Make tag pages
   tags.forEach(tag => {
     createPage({
-      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      path: `/tags/${_.kebabCase(tag.fieldValue.toLowerCase())}/`,
       component: tagTemplate,
       context: {
         tag: tag.fieldValue,

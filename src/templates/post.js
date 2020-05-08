@@ -109,7 +109,7 @@ export default ({ data, props, pageContext }) => {
         <h3>Thank you for reading</h3>
         <p>If you have comment or feedback, please email me at yinhowlew@gmail.com.</p>
         <p>If you like this article, please click on the meaningless heart icon below.</p>
-        <Heart />
+        <Heart id={`${post.fields.slug}big-heart`} />
         <br />
 
         <nav style={style.nav}>
