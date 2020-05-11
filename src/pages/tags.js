@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import kebabCase from "lodash/kebabCase"
 import { Link, graphql } from "gatsby"
 import Tag from "../components/Tag/Tag";
 import Layout from "../components/Layout";
@@ -20,7 +19,7 @@ const TagsPage = ({
       <h1>Tags</h1>
         <div  style={{ display: "flex", flexDirection: "row"}}>
         {group.sort(function(a, b){return b.totalCount-a.totalCount}).map(tag => (
-            <Link key={tag.fieldValue} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+            <Link key={tag.fieldValue} to={`/tags/${tag.fieldValue.toLowerCase()}/`}>
               <Tag>{tag.fieldValue} ({tag.totalCount})</Tag>
             </Link>
         ))}
