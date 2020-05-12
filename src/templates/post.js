@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import { MDXProvider } from "@mdx-js/react";
@@ -8,6 +8,7 @@ import Img from "gatsby-image";
 import CodeBlock from "../components/CodeBlock";
 import Tag from "../components/Tag/Tag";
 import Heart from '../components/Heart';
+import firebase from '../config/Fire';
 
 const components = {
   pre: props => <div {...props} />,
@@ -62,6 +63,39 @@ export default ({ data, props, pageContext }) => {
     }                  
   }
 
+  const [like, setLike] = useState(0); 
+
+  useEffect(() => {
+    //fetch like from firestore
+    const original = post.fields.slug;
+    const slug = original.substring(1, original.length-1);
+    const fetchLike = () => {
+      firebase.firestore().collection('post').doc(slug).get()
+      .then(function(post) {
+          if (post.exists) {
+            setLike(post.data().count);
+          } else {
+            setLike(0);  
+          }        
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+    }
+    fetchLike();
+  }, [post.fields.slug])
+
+  const updateLike = () => {
+    const original = post.fields.slug;
+    const slug = original.substring(1, original.length-1);
+
+    firebase.firestore().collection("post").doc(slug).set({
+      count: like + 1
+    })
+
+    setLike(like + 1)
+  }
+
   const generateRandomSlug = () => {
     const totalCount = data.allMdx.totalCount;
     let x = Math.floor((Math.random() * totalCount)); //generate random between 0 to excluding totalCount    
@@ -109,7 +143,10 @@ export default ({ data, props, pageContext }) => {
         <h3>Thank you for reading</h3>
         <p>If you have comment or feedback, please email me at yinhowlew@gmail.com.</p>
         <p>If you like this article, please click on the meaningless heart icon below.</p>
-        <Heart id={`${post.fields.slug}big-heart`} />
+
+        
+        <Heart updateLike={updateLike} />
+        <p>{like} loves</p>
         <br />
 
         <nav style={style.nav}>
