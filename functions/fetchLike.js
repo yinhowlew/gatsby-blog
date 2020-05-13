@@ -16,9 +16,10 @@ exports.handler = function(event, context, callback) {
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
     console.log("slug", slug)
-    const post = firebase.firestore().collection('post').doc(slug).get().data().count
+    const post = firebase.firestore().collection('post').doc(slug).get()
     console.log("post", post)
  //    const count = post.data().count
+ 	// try .then and fill a variable w data
 	// console.log("count", count)
 
     const response = {
