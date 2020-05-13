@@ -15,8 +15,8 @@ exports.handler = async function(event, context, callback) {
 	// firebase.firestore();
 	// const original = post.fields.slug;
     // const slug = original.substring(1, original.length-1);
-    const slug = event.multiValueQueryStringParameters.slug
-    const like = event.multiValueQueryStringParameters.like
+    const slug = event.queryStringParameters.slug
+    const like = event.queryStringParameters.like
 
     await firebase.firestore().collection("post").doc(slug).set({
       count: Number(like) + 1
