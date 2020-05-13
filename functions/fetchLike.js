@@ -16,13 +16,15 @@ exports.handler = async function(event, context, callback) {
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
     console.log("slug", slug)
-    var count = 0;
+    // var count = 0;
 
-    await firebase.firestore().collection('post').doc(slug).get()
+    const count = await firebase.firestore().collection('post').doc(slug).get()
     .then(function(post) {
     	// console.log("post", post.data())
-    	count = post.data().count
+    	return post.data().count
     })
+    // try RETURN and a variable
+    console.log(count)
     // console.log("count", count)
  //    const count = post.data().count
  	// try .then and fill a variable w data
