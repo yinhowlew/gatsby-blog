@@ -15,15 +15,12 @@ exports.handler = async function(event, context, callback) {
 	// const original = post.fields.slug;
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
+    const like = event.queryStringParameters.like
 
-    const count = await firebase.firestore().collection('post').doc(slug).get()
-    .then(function(post) {
-    	// console.log("post", post.data())
-    	return post.data().count
+    await firebase.firestore().collection("post").doc(slug).set({
+      count: Number(like) + 1
     })
-    console.log(count) // this fetches the right data
-    // but somehow lambda function time out
-    // OMG below fixes it...
+
     context.callbackWaitsForEmptyEventLoop = false;
 
     const response = {
@@ -33,8 +30,7 @@ exports.handler = async function(event, context, callback) {
 			"Content-Type": "application/json"
 		},
     	body: JSON.stringify({
-    		message: "success",
-    		input: count
+    		message: "update success",
     	})
     }
 
