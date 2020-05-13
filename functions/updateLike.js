@@ -30,7 +30,7 @@ exports.handler = async function(event, context, callback) {
 			"Content-Type": "application/json"
 		},
     	body: JSON.stringify({
-    		message: "update success",
+    		message: "update success!!",
     	})
     }
 
