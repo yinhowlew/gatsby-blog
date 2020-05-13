@@ -16,17 +16,17 @@ exports.handler = function(event, context, callback) {
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
     console.log("slug", slug)
-    const post = firebase.firestore().collection('post').doc(slug).get()
+    const post = firebase.firestore().collection('post').doc(slug).get().data().count
     console.log("post", post)
-    const count = post.data().count
-	console.log("count", count)
+ //    const count = post.data().count
+	// console.log("count", count)
 
     const response = {
     	statusCode: 200,
     	headers: {
 			"Access-Control-Allow-Origin": "*"
 		},
-    	body: count
+    	body: post
     }
 
 	callback(null, response);
