@@ -19,9 +19,10 @@ exports.handler = function(event, context, callback) {
     var count = 0;
     firebase.firestore().collection('post').doc(slug).get()
     .then(function(post) {
-    	count = post.data().count
+    	console.log("firestore connected")
+    	// count = post.data().count
     })
-    console.log("count", count)
+    // console.log("count", count)
  //    const count = post.data().count
  	// try .then and fill a variable w data
 	// console.log("count", count)
