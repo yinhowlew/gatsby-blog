@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "yinhow-blog",
 };
 
-exports.handler = function(event, context, callback) {
+exports.handler = async function(event, context, callback) {
 
 	firebase.initializeApp(firebaseConfig);
 	firebase.firestore();
@@ -16,13 +16,14 @@ exports.handler = function(event, context, callback) {
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
 
-    const count = firebase.firestore().collection('post').doc(slug).get()
+    const count = await firebase.firestore().collection('post').doc(slug).get()
     .then(function(post) {
     	// console.log("post", post.data())
     	return post.data().count
     })
     console.log(count) // this fetches the right data
     // but somehow the end point 
+    context.callbackWaitsForEmptyEventLoop = false;
 
     const response = {
     	statusCode: 200,
