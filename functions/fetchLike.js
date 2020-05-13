@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "yinhow-blog",
 };
 
-exports.handler = function(event, context, callback) {
+exports.handler = async function(event, context, callback) {
 
 	firebase.initializeApp(firebaseConfig);
 	firebase.firestore();
@@ -17,10 +17,11 @@ exports.handler = function(event, context, callback) {
     const slug = event.queryStringParameters.slug
     console.log("slug", slug)
     var count = 0;
-    firebase.firestore().collection('post').doc(slug).get()
+    
+    await firebase.firestore().collection('post').doc(slug).get()
     .then(function(post) {
-    	console.log("post", post.data())
-    	// count = post.data().count
+    	// console.log("post", post.data())
+    	count = post.data().count
     })
     // console.log("count", count)
  //    const count = post.data().count
