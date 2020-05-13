@@ -17,7 +17,7 @@ exports.handler = async function(event, context, callback) {
     const slug = event.queryStringParameters.slug
     console.log("slug", slug)
     var count = 0;
-    
+
     await firebase.firestore().collection('post').doc(slug).get()
     .then(function(post) {
     	// console.log("post", post.data())
@@ -31,9 +31,13 @@ exports.handler = async function(event, context, callback) {
     const response = {
     	statusCode: 200,
     	headers: {
-			"Access-Control-Allow-Origin": "*"
+			"Access-Control-Allow-Origin": "*",
+			"Content-Type": "application/json"
 		},
-    	body: count
+    	body: JSON.stringify({
+    		message: "success",
+    		input: count
+    	})
     }
 
 	callback(null, response);
