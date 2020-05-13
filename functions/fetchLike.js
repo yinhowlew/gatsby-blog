@@ -8,9 +8,6 @@ const firebaseConfig = {
   projectId: "yinhow-blog",
 };
 
-firebase.initializeApp(firebaseConfig);
-firebase.firestore();
-
 exports.handler = async function(event, context, callback) {
 
 	firebase.initializeApp(firebaseConfig);
