@@ -8,15 +8,18 @@ const firebaseConfig = {
   projectId: "yinhow-blog",
 };
 
-exports.handler = async function(event, context, callback) {
+exports.handler = function(event, context, callback) {
 
 	firebase.initializeApp(firebaseConfig);
 	firebase.firestore();
 	// const original = post.fields.slug;
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
-    const post = await firebase.firestore().collection('post').doc(slug).get()
-    const count = await post.data().count
+    console.log("slug", slug)
+    const post = firebase.firestore().collection('post').doc(slug).get()
+    console.log("post", post)
+    const count = post.data().count
+	console.log("count", count)
 
     const response = {
     	statusCode: 200,
