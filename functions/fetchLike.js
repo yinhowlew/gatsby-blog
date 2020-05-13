@@ -13,6 +13,8 @@ firebase.firestore();
 
 exports.handler = async function(event, context, callback) {
 
+	firebase.initializeApp(firebaseConfig);
+	firebase.firestore();
 	// const original = post.fields.slug;
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
