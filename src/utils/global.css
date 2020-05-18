@@ -31,6 +31,7 @@ body.dark {
   --form-shadow: 0 2px 15px 0 rgba(26, 26, 27, 0.637);
 }
 
+
 /*
   RTL layout
 */
@@ -58,7 +59,7 @@ body:lang(ar) .language-text,
 body:lang(he) .language-text {
   display: inline-block;
 }
-
+ 
 body:lang(fa) blockquote,
 body:lang(ar) blockquote,
 body:lang(he) blockquote {
@@ -385,5 +386,11 @@ pre[data-line] {
 @media only screen and (max-width: 450px) {
   .intro-content {
     width: 50%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  blockquote {
+    color: var(--textTitle);
   }
 }

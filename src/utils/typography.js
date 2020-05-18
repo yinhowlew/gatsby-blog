@@ -55,7 +55,7 @@ FairyGates.overrideThemeStyles = () => ({
     fontSize: '1rem',
   },
   blockquote: {
-    color: 'inherit',
+    color: 'var(--textTitle)',
     borderLeftColor: 'inherit',
     opacity: '0.8',
   },
