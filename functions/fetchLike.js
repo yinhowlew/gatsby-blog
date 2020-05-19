@@ -22,7 +22,7 @@ exports.handler = async function(event, context, callback) {
     	// console.log("post", post.data())
     	return post.data().count
     })
-    console.log(count) // this fetches the right data
+    console.log("new", count) // this fetches the right data
     // but somehow lambda function time out
     // OMG below fixes it...
     // context.callbackWaitsForEmptyEventLoop = false;
