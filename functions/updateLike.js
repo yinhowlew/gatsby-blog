@@ -10,7 +10,7 @@ var firebase = require("./serverlessConfig")
 
 
 exports.handler = async function(event, context, callback) {
-
+ 
 	// firebase.initializeApp(firebaseConfig);
 	// firebase.firestore();
 	// const original = post.fields.slug;
