@@ -9,7 +9,7 @@ var firebase = require("./serverlessConfig")
 // };
 
 
-exports.handler = function(event, context, callback) {
+exports.handler = async function(event, context, callback) {
  
 	// firebase.initializeApp(firebaseConfig);
 	// firebase.firestore();
@@ -18,13 +18,13 @@ exports.handler = function(event, context, callback) {
     const slug = event.queryStringParameters.slug
     const like = event.queryStringParameters.like
 
-    firebase.firestore().collection("post").doc(slug).set({
+    await firebase.firestore().collection("post").doc(slug).set({
       count: Number(like) + 1
     })
 
     // context.callbackWaitsForEmptyEventLoop = false;
 
-    const response = {
+    return {
     	statusCode: 200,
     	headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -35,5 +35,5 @@ exports.handler = function(event, context, callback) {
     	})
     }
 
-	callback(null, response);
+	// callback(null, response);
 }
