@@ -9,7 +9,7 @@ var firebase = require("./serverlessConfig")
 // };
 
 
-exports.handler = async function(event, context, callback) {
+exports.handler = function(event, context, callback) {
  
 	// firebase.initializeApp(firebaseConfig);
 	// firebase.firestore();
@@ -18,11 +18,11 @@ exports.handler = async function(event, context, callback) {
     const slug = event.queryStringParameters.slug
     const like = event.queryStringParameters.like
 
-    await firebase.firestore().collection("post").doc(slug).set({
+    firebase.firestore().collection("post").doc(slug).set({
       count: Number(like) + 1
     })
 
-    context.callbackWaitsForEmptyEventLoop = false;
+    // context.callbackWaitsForEmptyEventLoop = false;
 
     const response = {
     	statusCode: 200,

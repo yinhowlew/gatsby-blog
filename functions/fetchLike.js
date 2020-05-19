@@ -25,9 +25,9 @@ exports.handler = async function(event, context, callback) {
     console.log(count) // this fetches the right data
     // but somehow lambda function time out
     // OMG below fixes it...
-    context.callbackWaitsForEmptyEventLoop = false;
+    // context.callbackWaitsForEmptyEventLoop = false;
 
-    const response = {
+    return {
     	statusCode: 200,
     	headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -39,5 +39,5 @@ exports.handler = async function(event, context, callback) {
     	})
     }
 
-	callback(null, response);
+	// callback(null, response);
 }
