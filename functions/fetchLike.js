@@ -9,7 +9,7 @@ var firebase = require("./serverlessConfig")
 //   projectId: "yinhow-blog",
 // };
 
-exports.handler = async function(event, context, callback) {
+exports.handler = function(event, context, callback) {
 
 	// firebase.initializeApp(firebaseConfig);
 	// firebase.firestore();
@@ -17,7 +17,7 @@ exports.handler = async function(event, context, callback) {
     // const slug = original.substring(1, original.length-1);
     const slug = event.queryStringParameters.slug
 
-    const count = await firebase.firestore().collection('post').doc(slug).get()
+    const count =  firebase.firestore().collection('post').doc(slug).get()
     .then(function(post) {
     	// console.log("post", post.data())
     	return post.data().count
@@ -27,7 +27,7 @@ exports.handler = async function(event, context, callback) {
     // OMG below fixes it..
     // context.callbackWaitsForEmptyEventLoop = false;
 
-    return {
+    const response = {
     	statusCode: 200,
     	headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -39,5 +39,5 @@ exports.handler = async function(event, context, callback) {
     	})
     }
 
-	// callback(null, response);
+	callback(null, response);
 }
