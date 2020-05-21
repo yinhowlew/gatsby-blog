@@ -101,6 +101,7 @@ Netlify function also generates an api end-point that frontend can call, e.g. to
 - the handler method receives 3 arguments: event, context, callback
 - in our case, we get the query string parameter from event argument
 - if you're using async, don't use callback in your function
+- to return data from serverless function, the data in body needs to be converted to string using JSON.stringify()
 
 ```js
 //fetchLike
