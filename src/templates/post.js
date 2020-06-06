@@ -141,7 +141,7 @@ export default ({ data, props, pageContext }) => {
         <br />
         <hr />
         <h3>Thank you for reading</h3>
-        <p>If you have comment or feedback, please email me at yinhowlew@gmail.com.</p>
+        <p>If you'd like a monthly email on new posts, please pop your email <a href="https://docs.google.com/forms/d/e/1FAIpQLSfCjvgmUqPvVMlg53uklqw-143AO-xy94pmemWDKdxm0eN2nA/viewform">here</a>.</p>
         <p>If you like this article, please click on the meaningless heart icon below.</p>
 
         
