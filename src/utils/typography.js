@@ -55,9 +55,12 @@ FairyGates.overrideThemeStyles = () => ({
     fontSize: '1rem',
   },
   blockquote: {
+    fontSize: '1em',
+    fontStyle: 'normal',
     color: 'var(--textTitle)',
     borderLeftColor: 'inherit',
-    opacity: '0.8',
+    borderLeft: '4px solid',
+    opacity: '0.6',
   },
   'blockquote.translation': {
     fontSize: '1em',
