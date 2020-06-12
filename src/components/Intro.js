@@ -26,7 +26,7 @@ const Intro = ({ data }) => {
 		    />	 
 		    <content className="intro-content"> 
 		    	<p>hello there, yinhow here.</p> 
-		    	<p>2020 update: currently on sabbatical in NYC. will be writing on my learnings during this sabbatical while surviving pandemic.</p>
+		    	<p>2020 update: currently on sabbatical in NYC. will be writing on my learnings during this sabbatical while surviving the pandemic.</p>
 		    	
 		    </content>
 		</section>
