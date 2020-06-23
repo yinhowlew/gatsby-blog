@@ -1,0 +1,122 @@
+---
+title: New Javascript syntax learned
+description:  JS
+tags:
+ - Coding
+date: 2020-06-23
+---
+
+<h3>1 ) Optional chaining ?.</h3>
+
+We have a deeply nested user object below.
+
+```js
+let user = {
+	favorite: {
+		shoes: {
+			size: "10.5",
+			brand: "Nike"
+		}
+	}
+}
+
+user.favorite?.shoes?.brand // "Nike"
+
+// error
+user.favorite.shirts.brand // TypeError: Cannot read property 'brand' of undefined
+
+// no error
+user.favorite?.shirts?.brand // undefined
+```
+<br />
+
+If we want to get user's favourite shirts brand, we would normally write
+user.favourite.shirt.brand.
+
+But if user has no favourite shirt (shirts property does not exist), getting shirts.brand will return error.
+
+- If we use optional chaining - user.favorite?.shirts?.brand - we will get undefined instead of error.
+
+- This is useful for us to call a deeply nested object properties without having an error **if any intermediate property in the chain doesn't exist** or is undefined.
+
+<br />
+
+<h3>2 ) Nullish coalescing ??</h3>
+
+X ?? Y - Y will be evaluated if X is null or undefined
+
+Prior to this, we use X || Y for short-circuit evaluation. 
+
+But the issue for || is that X will be evaluated as false if it is 0 or empty string.
+
+If we need to **treat 0 or empty string differently** from null or undefined, we should use ?? instead of ||.
+
+```js
+let siblings = 0
+
+alert(siblings || "please indicate your no. of siblings")
+// "please indicate your no. of siblings"
+
+alert(siblings ?? "please indicate your no. of siblings")
+// 0
+```
+
+<br />
+
+<h3>3 ) Computed property name</h3>
+
+It allows us to use expression to dynamically generate property names within object literals.
+
+```js
+let fruit = prompt("which is your favorite fruit?") //apple
+
+let basket = {
+	[fruit]: 5,
+	[fruit + "juice"]: 10
+}
+
+basket.apple // 5
+basket.applejuice // 10
+```
+
+<br />
+
+<h3>4 ) Property existence test</h3>
+
+This is not new, but a neat way to test if a property exists.
+
+```js
+let user = {
+	name: "John",
+	age: 10
+}
+
+"name" in user // true
+"address" in user // false
+```
+
+<br />
+
+<h3>5 ) Array.find </h3>
+
+Find the first element in an array that returns true and returns that element.
+
+```js
+const users = [
+	{
+		name: "John",
+		age: 20
+	},
+	{
+		name: "Daisy",
+		age: 26
+	}
+]
+
+users.find((user) => {
+	return user.name === "Daisy"
+})
+// {name: "Daisy", age: 26}
+
+```
+
