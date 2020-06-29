@@ -35,6 +35,7 @@ const About = ({ data }) => {
 		    <h3>Links</h3>
 		    <p>work-related writings on <a href='https://medium.com/@yinhow'>Medium.</a></p>
 		    <p>I also write about poker <span><a href="https://positiveev.wordpress.com">here</a></span>. </p>
+
 		</main> 
 	  </Layout>		
 	)
