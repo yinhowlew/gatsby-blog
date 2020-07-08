@@ -9,8 +9,8 @@ module.exports = {
     title: `Strong Opinions, Loosely Held`,
     author: 'yinhow',
     siteUrl: 'https://yinhow.com',
-    description: 'yinhow personal blog built with gatsby',
-    keywords: ['tech','product','startup','coding','poker']
+    description: 'yinhow personal blog',
+    keywords: ['tech','product','startup','coding','poker', "yin how lew", "yinhowlew"]
   },
   plugins: [
      {
