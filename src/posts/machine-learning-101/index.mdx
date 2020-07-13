@@ -9,6 +9,16 @@ date: 2020-07-07
 
 <p style={{fontSize: "0.7em", fontStyle: "italic"}}>Photo by Liam Charmer on Unsplash</p>
 
+Did you know that we have been helping Google to train bots without realizing it?
+
+Those annoying **"I'm not a robot"** <a href="https://www.techradar.com/news/captcha-if-you-can-how-youve-been-training-ai-for-years-without-realising-it">captcha</a> tests not only serve to distinguish us from bots, but also **helps train Google's A.I.** to recognise image better.
+
+![car-captcha](car-captcha.png)
+
+Did you notice these captcha has been showing more cars and roads images lately? When we have self-driving car, you should be proud that you help train it.
+
+...
+
 You told a client / your boss that you know Machine Learning (ML).
 
 Now you need to get a high-level overview before your meeting tomorrow.
@@ -38,15 +48,24 @@ This article will be the starting of a series:
 
 <h2 id="intro">Intro</h2>
 
-Machine Learning is getting computers to perform a specific task without explicit instruction. 
+Machine Learning is getting computers to perform a specific task without explicit instructions. 
+
+What does it mean by "without explicit instructions"?
+
+Traditionally, we get machines to perform a task by telling them **IF this THEN that**. But for very complex problem that we can't map out the exact steps, we will need machine to figure out the steps and instructions themselves. 
 
 This is done by **training** machines, getting them to learn about different patterns in data using different algorithms and statistical models.
 
 What does training entail?
 
-For example, if we want our program to identify a dog breed from a dog image, we need to feed the program a large quantity of dog images along with the correct labels / answers. 
+For example, if we want our program to identify a dog breed from a dog image, we need to feed the program a large quantity of **training data** - dog images along with the correct labels / answers. 
+
+Machine learns by an **iterative** process of minimising the loss function / cost function which denotes how much error machine makes in prediction. This is done through different optimisation algorithms such as gradient descent. 	
+
+...
 
 Training a machine from scratch can be very costly (time, computing power, and amount of training data). ML only became more mainstream in the past few years when we have a **massive increase in data** and advancement in CPU/**GPU** capabilities.
+
 
 Some real-world applications of ML:
 
@@ -322,6 +341,9 @@ I did a fun <span><a href="https://www.kaggle.com/c/titanic">Titanic challenge</
 It is a simple Supervised Learning with Classification problem.
 
 The full work through can be found here: https://www.kaggle.com/yinhowlew/titanic-kaggle-yh-v2
+
+If you are keen to read more on the different machine learning algorithms (Decision Tree, Clustering, Logistic Regression), <a href="https://www.freecodecamp.org/news/a-no-code-intro-to-the-9-most-important-machine-learning-algorithms-today/">this</a> is a great read for beginner.
+
 
 
 
