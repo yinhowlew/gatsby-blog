@@ -16,6 +16,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.5.9",
     "@mdx-js/react": "^1.5.9",
+    "@pauliescanlon/gatsby-mdx-embed": "0.0.21",
     "firebase": "^7.14.3",
     "gatsby": "^2.20.25",
     "gatsby-cli": "^2.12.44",

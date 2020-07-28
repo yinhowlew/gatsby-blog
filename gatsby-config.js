@@ -88,5 +88,6 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     'gatsby-plugin-robots-txt',
+    `@pauliescanlon/gatsby-mdx-embed`
   ],
 }
