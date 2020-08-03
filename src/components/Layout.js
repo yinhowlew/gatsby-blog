@@ -56,6 +56,7 @@ class Layout extends React.Component {
 				   		<Link to="/">home</Link>
 				   		<div style={{ display: "flex", flexDirection: "row" }}>
 				   			<Link to="/about" style={{ marginRight: "20px"}}>about</Link>
+				   			<a href="https://tinyletter.com/yinhow" style={{ marginRight: "20px"}}>subscribe</a>
 				   			<div>
 							    {this.state.theme !== null ? (
 					              <Toggle

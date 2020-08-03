@@ -9,6 +9,7 @@ import CodeBlock from "../components/CodeBlock";
 import Tag from "../components/Tag/Tag";
 import Heart from '../components/Heart';
 import firebase from '../config/Fire';
+import ReactGA from 'react-ga';
 
 const components = {
   pre: props => <div {...props} />,
@@ -83,7 +84,16 @@ export default ({ data, props, pageContext }) => {
       })
     }
     fetchLike();
+    ReactGA.initialize('UA-165622494-1');
   }, [post.fields.slug])
+
+  const logClick = (slug) => {
+      ReactGA.event({
+        category: 'event',
+        action: 'clicklike',
+        label: slug,
+      })  
+  }
 
   const updateLike = () => {
     const original = post.fields.slug;
@@ -93,7 +103,9 @@ export default ({ data, props, pageContext }) => {
       count: like + 1
     })
 
-    setLike(like + 1)
+    setLike(like + 1);
+
+    logClick(slug)
   }
 
   const generateRandomSlug = () => {
@@ -141,7 +153,7 @@ export default ({ data, props, pageContext }) => {
         <br />
         <hr />
         <h3>Thank you for reading</h3>
-        <p>If you'd like a monthly email on new posts, please pop your email <a href="https://docs.google.com/forms/d/e/1FAIpQLSfCjvgmUqPvVMlg53uklqw-143AO-xy94pmemWDKdxm0eN2nA/viewform">here</a>.</p>
+        <p>If you'd like a monthly email on new posts, please pop your email <a href="https://tinyletter.com/yinhow">here</a>.</p>
         <p>If you like this article, please click on the meaningless heart icon below.</p>
 
         
