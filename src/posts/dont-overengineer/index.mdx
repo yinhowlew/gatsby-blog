@@ -1,0 +1,118 @@
+---
+title: Overengineering
+description:  if all you have is a hammer, everything looks like a nail
+featuredImage: overengineering-1.png
+tags:
+ - Product
+ - Tech
+date: 2020-08-04
+---
+
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>Overengineering - the act of designing a product to be more robust or have more features than often necessary for its intended use, or for a process to be unnecessarily complex or inefficient.</p>
+
+Customer: I would like a secure door for my house.
+
+You: Say no more.
+
+*Proceed to install state-of-the-art bank vault-like door with computer vision, face recognition technology, and a secure 22-digit keypad that needs to be reset every 30 minutes.*
+
+Customer: ...
+
+## What is overengineering
+
+Overengineering is a common issue in software engineering that leads to unnecessary bloat and complexity with no  marginal value to users.
+
+For certain industries where product safety is non-negotiable, overengineering might be necessary - aircrafts, cars, rockets, medical devices.
+
+But if all a customer needs is a bike to get from point A to point B, you would not want to build a plane.
+
+## Why do we overengineer?
+
+1) 
+
+Management issue - when management does not know intimately what users need, and does not understand the trade-off and prioritisation necessary in a software development process. 
+
+The biggest culprit is often wanting things built **"just in case"**. 
+
+Building a software used by 1000 users is different from building one used by 10 million users in term of architectural decisions. Similarly, building an e-commerce platform with bespoke Warehouse Management System for 100 SKUs vs 1 million SKUs are two completely different ball games.
+
+If you are starting a new product, you should value speed to market and iteration instead of taking forever to build a system robust enough for 10 million users or 1 million SKUs. 
+
+When you reach 10 million users, it will be a good problem to have, and with this traction you should have the resource and funding to solve for it then.
+
+2)
+
+Software engineers have a preference for writing clean and elegant code, and generally follow two guiding principles for source code:
+
+- easy to understand
+- easy to change/maintain
+
+Sometimes, these 2 objectives do conflict. 
+
+Code that is easy to read and understand often means the code is hard to change when the requirements change.
+
+Conversely when you refactor code and add more abstractions to achieve DRY (don't repeat yourself) and make the code future-proof, it becomes more complex and harder to understand for the next developer to make future enhancements and bug fixes.
+
+This is a delicate act of balance that requires judgment, and more importantly, asking product owner/manager tough questions: is X expected to change in the near future?
+
+
+## How to avoid
+
+1) 
+
+There's a saying in startup: don't hire until it hurts. Similarly in software, don't build something unless it is a problem.
+
+Challenge and question your product owner:
+
+- do we really need an API for this instead of hardcoding?
+- do we need a Content Management System just to update terms and conditions and app banners once a year? 
+- do we need a complex user analytics visualisation dashboard when we have only 1000 users and Google Analytics can do the job?
+
+2) 
+
+Focus on implementing the right solution instead of using a hot / trending technology.
+
+There is an interesting golden rule of Machine Learning by Google that says "Don't use ML unless you have to."
+
+If all you need is a google spreedsheet or excel, you don't need a database or a machine learning system.
+
+If your team is more comfortable in a traditional server application, there's no need to jump into the Serverless bandwagon unless it is the absolutely right choice.
+
+If lots of code is faster and easier than no-code, then do lots of code.
+
+3)
+
+Keep your obsession for clean code in perspective. 
+
+> Let clean code guide you. Then let it go.<br />- Dan Abramov - <a href="https://overreacted.io/goodbye-clean-code/">*Goodbye Clean Code*</a>
+
+Programming is ultimately problem-solving. When we are unsure if we need an additional abstraction, go back to first-principle thinking: does it solve our problem at hand?
+
+Constantly ask yourself if the way you’re currently writing code solves the immediate problem, or if you’re writing it in a way to future proof it and make it more resilient to change. If it is the latter, be honest if the future will be any time soon. 
+
+4)
+
+Good developers copy, great developers paste.
+
+If there are good libraries or plugins availables, build on other people's work and use it. While there is joy as a creator in building something from scratch, most common problems we need have already been efficiently solved by others. 
+
+Your time should be focused on building the key features of your application, instead of coding another carousel banner or admin panel CRUD pages.
+
+5)
+
+Management needs to understand what is the North Star of your product. 
+
+"I want a site that uses the least amount of code"  
+"I want a site with 100/100 Lighthouse score"  
+"I want a site that uses Machine Learning or Blockchain"  
+    - **said no user ever**
+
+If the North Star of your product is done well, all other features are secondary. Conversely, if your North Star is mediocre, it does not matter even if all other features are perfectly executed. 
+
+E.g. Tik Tok's North Star is its algorithmic distribution of content - as opposed to distribution based on social graph (FB) or interest graph (Twitter). It focuses its engineering heavily on perfecting the machine learning algorithm, which learns from user's consumption pattern and builds up passive personalisation. It does not waste much effort in goading users to add friends and follow people or urge them to grant access to their phone contact lists.
+
+
+
+
+
+
