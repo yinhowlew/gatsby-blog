@@ -154,7 +154,7 @@ Building scraper is the easy part; going to gym consistently is the hard part. I
 ```js
 const puppeteer = require('puppeteer');
 const Airtable = require('airtable');
-const base = new Airtable({apiKey: 'keygEzAjLzNXI5OPd'}).base('appYCYGBCnnrNjlkU');
+const base = new Airtable({apiKey: 'YOUR-API-KEY'}).base('YOUR-BASE');
 
 const checkMeter = async () => {
   const browser = await puppeteer.launch()
