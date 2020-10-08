@@ -28,6 +28,11 @@ const About = ({ data }) => {
 		    />
 		    <p style={{fontSize: "0.7em", fontStyle: "italic"}}>vanity photo</p>	   	    			    
 */}	    	
+	    	<h3>Highlight posts</h3>
+	    	<p>1) <a href="https://yinhow.com/decision-making-learned-from-poker/">Decision Making Learned from Poker</a></p>
+	    	<p>2) <a href="https://yinhow.com/how-to-build-wealth/">How to Build Wealth</a></p>	    	
+	    	<p>3) <a href="https://yinhow.com/my-best-cold-emails/">My Best Cold Emails that Opened Doors</a></p>	    		    	
+	    	<p>4) <a href="https://yinhow.com/applying-for-your-dream-job/">Applying for Your Dream Job</a></p>	    	
 	    	<h3>About this site</h3>
 	    	<p>Built with Gatsby and Netlify</p>
 	    	<p>Credit: dark theme toggle and implementation from Dan Abramov</p>
