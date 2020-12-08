@@ -21,7 +21,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" image={seoImage}/>   
+      <SEO title="Yin How" image={seoImage}/>   
       <div>
         <h1>
           Strong Opinions, Loosely Held
