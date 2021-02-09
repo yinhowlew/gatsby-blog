@@ -45,6 +45,9 @@ FairyGates.overrideThemeStyles = () => ({
   'a.anchor svg[aria-hidden="true"]': {
     stroke: 'var(--textLink)',
   },
+  'p': {
+    lineHeight: "1.7em",
+  },
   'p code': {
     fontSize: '1rem',
   },
