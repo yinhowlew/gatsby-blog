@@ -377,9 +377,50 @@ pre[data-line] {
   width: 70%;
 }
 
+/*FOR DECRYPTO ONLY*/
+.dc-card-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  height: 450px;
+  align-items: center;
+}
+.dc-card {
+  background-color: #F9F9F9;
+  border: 1px solid #d23669;
+  border-radius: 10px;
+  width: 250px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+}
+.dc-card p {
+  color: #d23669;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 0px;
+}
+/*FOR DECRYPTO ONLY*/
+
+
 @media only screen and (max-width: 550px) {
   .intro-content {
     width: 60%;
+  }
+  /*FOR DECRYPTO ONLY*/
+  .dc-card-group {
+
+  }
+  .dc-card {
+
+  }
+  .dc-card p {
+
   }
 }
 
