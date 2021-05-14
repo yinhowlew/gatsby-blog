@@ -63,7 +63,7 @@ const Decrypto = ({ data }) => {
 	const [wordFour, setWordFour] = useState(Words[`${randomNumber()}`].Words);
 
 	const [isConfirm, setIsConfirm] = useState(false);
-	const [codeGenerated, setCodeGenerated] = useState("Click to generate code");
+	const [codeGenerated, setCodeGenerated] = useState(null);
 
 	useEffect(() => {
 		if (localStorage.getItem('words')) {
