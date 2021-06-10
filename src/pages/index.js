@@ -43,20 +43,22 @@ export default ({ data }) => {
         	}
         </div>
 
-        {data.allMdx.edges.map(({ node }) => (
-          <div key={node.id}>
-            <Link
-              to={node.fields.slug}
-            >
-              <h3 className="home-title">
-                  {node.frontmatter.title}
-              </h3>
-            </Link>
-            <div style={{ fontSize: '0.8em' }}>
-            	{node.frontmatter.date} <span> — {node.timeToRead} min read</span>
-            </div>	
-            <p>{node.frontmatter.description}</p>
-          </div>
+        {data.allMdx.edges
+          // .filter(({ node }) => !node.frontmatter.draft) // new to hide draft
+          .map(({ node }) => (
+            <div key={node.id}>
+              <Link
+                to={node.fields.slug}
+              >
+                <h3 className="home-title">
+                    {node.frontmatter.title}
+                </h3>
+              </Link>
+              <div style={{ fontSize: '0.8em' }}>
+              	{node.frontmatter.date} <span> — {node.timeToRead} min read</span>
+              </div>	
+              <p>{node.frontmatter.description}</p>
+            </div>
         ))}
       </div>
     </Layout>

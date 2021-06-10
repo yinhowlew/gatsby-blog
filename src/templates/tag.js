@@ -16,14 +16,16 @@ const Tags = ({ pageContext, data }) => {
       <SEO title={tag} description={`Posts in ${tag} category`} />          
       <h2>{tagHeader}</h2>
       <ul>
-        {edges.map(({ node }) => {
-          const { slug } = node.fields
-          const { title } = node.frontmatter
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          )
+        {edges
+          // .filter(({ node }) => !node.frontmatter.draft) // new to hide draft
+          .map(({ node }) => {
+            const { slug } = node.fields
+            const { title } = node.frontmatter
+            return (
+              <li key={slug}>
+                <Link to={slug}>{title}</Link>
+              </li>
+            )
         })}
       </ul>
       {/*

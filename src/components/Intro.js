@@ -24,11 +24,11 @@ const Intro = ({ data }) => {
 		      alt="yinhow-headshot"
 		      style={style.image}
 		    />	 
-		    <content className="intro-content"> 
+		    <div className="intro-content"> 
 		    	<p>hello there, yinhow here.</p> 
 		    	<p>2020 update: currently on sabbatical in NYC. will be writing on my learnings during this sabbatical while surviving the pandemic.</p>
 		    	
-		    </content>
+		    </div>
 		</section>
 	)
 }
