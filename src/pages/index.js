@@ -44,7 +44,7 @@ export default ({ data }) => {
         </div>
 
         {data.allMdx.edges
-          .filter(({ node }) => node.frontmatter.title.slice(0,7) !== "(draft)") // new to hide draft
+          // .filter(({ node }) => node.frontmatter.title.slice(0,7) !== "(draft)") // new to hide draft
           .map(({ node }) => (
             <div key={node.id}>
               <Link

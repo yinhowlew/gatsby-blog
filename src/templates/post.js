@@ -25,14 +25,14 @@ const components = {
 
 export default ({ data, props, pageContext }) => {
   const post = data.mdx;
-  // const prev = pageContext.prev 
-  // const next = pageContext.next;  
-  const prev = pageContext.prev?.node.frontmatter.title.slice(0,7) !== "(draft)" // don't show draft
-    ? pageContext.prev
-    : null
-  const next = pageContext.next?.node.frontmatter.title.slice(0,7) !== "(draft)"
-    ? pageContext.next
-    : null
+  const prev = pageContext.prev 
+  const next = pageContext.next;  
+  // const prev = pageContext.prev?.node.frontmatter.title.slice(0,7) !== "(draft)" // don't show draft
+  //   ? pageContext.prev
+  //   : null
+  // const next = pageContext.next?.node.frontmatter.title.slice(0,7) !== "(draft)"
+  //   ? pageContext.next
+  //   : null
 
   const tags = post.frontmatter.tags.map(tag => (
     <Link to={`/tags/${tag.toLowerCase()}`} key={tag}>
@@ -118,7 +118,8 @@ export default ({ data, props, pageContext }) => {
     let x = Math.floor((Math.random() * totalCount)); //generate random between 0 to excluding totalCount    
     let destination = data.allMdx.edges[x].node.fields.slug;
 
-    while (destination === post.fields.slug && data.allMdx.edges[x].node.frontmatter.title.slice(0,7) !== "(draft)") {
+    // while (destination === post.fields.slug && data.allMdx.edges[x].node.frontmatter.title.slice(0,7) !== "(draft)") {
+    while (destination === post.fields.slug) {
       x = Math.floor((Math.random() * totalCount));
       destination = data.allMdx.edges[x].node.fields.slug;
     }
