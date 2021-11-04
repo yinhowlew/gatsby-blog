@@ -17,7 +17,7 @@ const Tags = ({ pageContext, data }) => {
       <h2>{tagHeader}</h2>
       <ul>
         {edges
-          // .filter(({ node }) => !node.frontmatter.draft) // new to hide draft
+          .filter(({ node }) => node.frontmatter.title.slice(0,7) !== "(draft)") // new to hide draft
           .map(({ node }) => {
             const { slug } = node.fields
             const { title } = node.frontmatter

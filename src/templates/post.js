@@ -25,16 +25,23 @@ const components = {
 
 export default ({ data, props, pageContext }) => {
   const post = data.mdx;
-  const prev = pageContext.prev;
-  const next = pageContext.next;
+  // const prev = pageContext.prev 
+  // const next = pageContext.next;  
+  const prev = pageContext.prev?.node.frontmatter.title.slice(0,7) !== "(draft)" // don't show draft
+    ? pageContext.prev
+    : null
+  const next = pageContext.next?.node.frontmatter.title.slice(0,7) !== "(draft)"
+    ? pageContext.next
+    : null
+
   const tags = post.frontmatter.tags.map(tag => (
     <Link to={`/tags/${tag.toLowerCase()}`} key={tag}>
       <Tag>{tag}</Tag>
     </Link>
   ))
   const image = post.frontmatter.featuredImage
-  ? post.frontmatter.featuredImage.childImageSharp.resize
-  : null
+    ? post.frontmatter.featuredImage.childImageSharp.resize
+    : null
 
   const style = {
     spread: {
@@ -44,8 +51,6 @@ export default ({ data, props, pageContext }) => {
     nav: { 
       display: "flex",
       width: "100%", 
-      // justifyContent: "space-between",
-      // marginBottom: "20px"
     },
     navLeft: {
       width: "33.3%",
@@ -70,20 +75,20 @@ export default ({ data, props, pageContext }) => {
     //fetch like from firestore
     const original = post.fields.slug;
     const slug = original.substring(1, original.length-1);
-    const fetchLike = () => {
-      firebase.firestore().collection('post').doc(slug).get()
-      .then(function(post) {
-          if (post.exists) {
-            setLike(post.data().count);
-          } else {
-            setLike(0);  
-          }        
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
+    const fetchLike = async () => {
+      const post = await firebase.firestore().collection('post').doc(slug).get()
+
+      try {
+        if (post.exists) setLike(post.data().count);
+        else setLike(0);       
+
+      } catch (e) {
+        console.log(e)
+      }
     }
+
     fetchLike();
+
     ReactGA.initialize('UA-165622494-1');
   }, [post.fields.slug])
 
@@ -112,8 +117,8 @@ export default ({ data, props, pageContext }) => {
     const totalCount = data.allMdx.totalCount;
     let x = Math.floor((Math.random() * totalCount)); //generate random between 0 to excluding totalCount    
     let destination = data.allMdx.edges[x].node.fields.slug;
-    
-    while (destination === post.fields.slug) {
+
+    while (destination === post.fields.slug && data.allMdx.edges[x].node.frontmatter.title.slice(0,7) !== "(draft)") {
       x = Math.floor((Math.random() * totalCount));
       destination = data.allMdx.edges[x].node.fields.slug;
     }
@@ -227,6 +232,9 @@ export const query = graphql`
           fields {
             slug
           }
+          frontmatter {
+            title
+          }          
         }
       }
     }      

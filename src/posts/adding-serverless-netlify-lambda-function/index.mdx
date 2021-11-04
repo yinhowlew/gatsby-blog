@@ -40,19 +40,17 @@ const [like, setLike] = useState(0); //local state for "likes"
 
 useEffect(() => {
 	//fetch like from firestore when the page component loads
-	const fetchLike = () => {
-	  firebase.firestore().collection('post').doc(slug).get()
-	  .then(function(post) {
-	      if (post.exists) {
-	        setLike(post.data().count);  //update state 
-	      } else {
-	        setLike(0);  //if no like
-	      }        
-	  })
-	  .catch(function(error) {
-	    console.log(error)
-	  })
-	}
+    const fetchLike = async () => {
+      const post = await firebase.firestore().collection('post').doc(slug).get()
+
+      try {
+        if (post.exists) setLike(post.data().count);
+        else setLike(0);       
+
+      } catch (e) {
+        console.log(e)
+      }
+    }
 
 	fetchLike();
 }, [post.fields.slug])

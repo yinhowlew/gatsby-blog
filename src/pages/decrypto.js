@@ -151,16 +151,16 @@ const Decrypto = ({ data }) => {
 						</div>        			
 		    		</section>
 			    	<section className="dc-card-group">
-			    		<button className="dc-card" onClick={() => setWordOne(Words[`${randomNumber()}`].Words)}>
+			    		<button className="dc-card">
 			    			<p>{wordOne.toLowerCase()}</p>
 			    		</button>
-			    		<button className="dc-card" onClick={() => setWordTwo(Words[`${randomNumber()}`].Words)}>
+			    		<button className="dc-card">
 			    			<p>{wordTwo.toLowerCase()}</p>
 			    		</button>
-			    		<button className="dc-card" onClick={() => setWordThree(Words[`${randomNumber()}`].Words)}>
+			    		<button className="dc-card">
 			    			<p>{wordThree.toLowerCase()}</p>
 			    		</button>
-			    		<button className="dc-card" onClick={() => setWordFour(Words[`${randomNumber()}`].Words)}>
+			    		<button className="dc-card">
 			    			<p>{wordFour.toLowerCase()}</p>
 			    		</button>
 			    	</section>

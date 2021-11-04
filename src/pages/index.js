@@ -44,7 +44,7 @@ export default ({ data }) => {
         </div>
 
         {data.allMdx.edges
-          // .filter(({ node }) => !node.frontmatter.draft) // new to hide draft
+          .filter(({ node }) => node.frontmatter.title.slice(0,7) !== "(draft)") // new to hide draft
           .map(({ node }) => (
             <div key={node.id}>
               <Link
@@ -110,10 +110,14 @@ export const query = graphql`
 `
 
 
-// export default () => (
-// 	<div>
-// 		<Link to="about">About</Link>
-// 		<h1>hello world</h1>
-// 		<p>this is yinhow</p>
-// 	</div>
-// )
+/* 
+new: add (draft) in front of title to not be shown
+
+note: don't update gatsby-cli, otherwise need to upgrade NPM version
+
+gatsby develop
+gatsby build
+git add . / commit / push origin master
+
+
+*/
