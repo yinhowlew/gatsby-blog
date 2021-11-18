@@ -1,0 +1,165 @@
+---
+title: NFT overview
+description: hype?
+featuredImage: beeple.webp
+tags:
+ - Business
+ - Startup
+date: 2021-11-14
+---
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>an NFT of Beeple sold for $69 million at Christie's. image credit: Christie's</p>
+
+
+I briefly looked into NFTs (Non-fungible tokens) back in March this year, but at that time, they seemed to me to be a lot of smoke and little substance. Recently, a few friends got me intrigued again, so I decided to dive deeper.
+
+If you have heard of NFTs and would like to get a better understanding of what the fuss is about, here is an overview for you.
+
+Table of Content:
+
+1. <a href="#value">What do NFTs do, and do they have values?</a>
+2. <a href="#work">How does NFT work under the hood</a>
+3. <a href="#create">How do I create my NFT? technical walkthrough</a>
+4. <a href="#art">NFT art - hype?</a>
+5. <a href="#gaming">NFTs in gaming - Axie Infinity</a>
+
+
+<h2 id="value">What do NFTs do, and do they have values?</h2>
+
+A NFT is a token on blockchain that represents digital non-digital assets - art, gaming token, baseball cards, music albums, virtual land, etc. "Non-fungible" means each token is unique and can't be interchanged with another token - unlike cryptocurrency where my one bitcoin is the same as your one bitcoin.
+
+Think of NFT as certificate of ownership that lives on blockchain. When you own a NFT, it confirms your ownership of the underlying asset and the rights described in the NFT metadata.
+
+Imagine you have a basketball jersey signed by Michael Jordan. When you show it to your friends or try to sell it on ebay, some people might naturally ask: how do you prove that it is authentic? Well, if you have a video of Michael Jordan signing your shirt, that might be a stronger evidence. But still, others might be skeptical that you could have 100 of the same jerseys, and you forged the signature on the other 99 jerseys to sell for profit.
+
+Many industries have tried to tackle this problem of proving authenticity by having industry-standard serial number and certificates. But few of these solutions are fully tamper-proof. And some authentication methods are not cheap or easily accessible, e.g. only banks, but not mom-and-pop shops, have the tool to detect very high-quality fake bills.
+
+Therein lies the magic (and hype) with NFT. Using blockchain and Smart Contract technology, a NFT is able to **confirm authenticity in a tamper-proof and relatively accessible way** - by having a permanent and unalterable record of who is the creator and who is the current owner on blockchain. When you own a unique NFT of an artwork, even if many others might make a copy of it, only you can prove that your version is the authentic one.
+
+For any single NFT, the value of owning the token comes down to **whether there is value in authentically owning the underlying asset**. For assets like collectibles, value is in the eye of beholders; owning the real thing is as valuable as the market makes it. But we are still in the early innings for NFT - the underlying technology can have huge potential to other industries beyond arts and baseball cards.
+
+It is important to note that owning a NFT does not give you full and unreserved copyright to the underlying asset. This is similar to buying something in real life - you can use it for your own enjoyment, you can sell it to another person, but you don't have the right to reproduce it or otherwise commercially benefit from it.
+
+
+
+
+
+<h2 id="work">How does NFT work under the hood?</h2>
+
+NFTs are tokens that are minted (created) through **Smart Contracts** that are deployed on blockchain. A Smart Contract is a piece of code on blockchain that is programmed to self-execute and create transactions when a set of pre-defined conditions are fulfilled - it is what governs the creation, ownership, and transfer of a NFT. 
+
+Fundamentally, we can consider NFT as a piece of data stored on blockchain that comes along with certain unalterable logic. Here are the information conveyed by a NFT:
+
+- who (which address) is the creator
+- who (which address) is the current owner
+- what are the past transactions
+- some attributes about the NFT: name, description, etc
+- location of the asset it is referencing:  (the asset location can be at IPFS* or an external link)
+- Some NFTs will also attach creator commission information and the related copyright and usage rights to the owner of the token
+
+Simply put, what a NFT say is **"This token is representing the ownership of this asset, which is created by John, and is currently owned by Stephanie"**.
+
+To find a NFT on a blockchain, you need 2 pieces of information: Address of the Smart Contract, and the ID of the Token. 
+
+When you have a NFT, you can link and show it in your crypto wallet. By proving you have the public address e.g. by signing a message using your private key, you prove your ownership of the NFT.
+
+Do note that the digital asset is usually not stored on blockchain since the file size is too large. A common option is to have the file in IPFS - InterPlanetary File System - which is a distributed network for storing and accessing files. 
+
+Essentially, NFT points to a link (tokenURI) that holds some metadata about the resource of the token - and part of the metadata points to where the asset is hosted.
+
+
+<h2 id="create">How do I create my NFT?</h2>
+
+Go to <a href="#art">next section</a> like to skip technical walkthrough. 
+
+The easiest way is to do it through a marketplace e.g. OpenSea, Foundation, Rarible, etc. These marketplaces take care of everything under the hood, and get a cut of every sales. 
+
+You also have the option of creating your NFT through code without using marketplace. In very high-level view, you need to be connected to the blockchain - the most popular ones now being Ethereum, Cardano, Polygon, Solana, Binance Smart Chain, etc. 
+
+There are two distinct steps - creating and deploying Smart Contract, and Minting
+
+#### Step 1 - Smart Contract
+Write your Smart Contract with open-source library such as OpenZeppelin.
+
+In general, your Smart Contract will include:
+- what type of token (eg ERC-721 standard)
+- an internal counter that governs how many NFTs can be minted (e.g. some are unique, but some can be multiple, e.g. 10-20 copies of the same baseball card collectible)
+- access control to minting. Only the owner can mint NFTs.
+- a mintNFT function that will be used during the later minting process
+- other terms of transfer and ownership
+ 
+Upload your Smart Contract to the blockchain, and get the address of your Smart Contract when successful. 
+
+
+#### Step 2 - Minting
+By minting an NFT, you publish a unique token on a blockchain. This token is an instance of your Smart Contract.
+
+Before minting, we need to upload our metadata JSON file and (optional) our digital asset to IPFS. Our metadata file will point to where the asset is at, and when uploaded, we will also get a tokenURI (equivalent of URL) of our metadata file.
+
+Here is an example of tokenURI of metadata in IPFS
+https://gateway.pinata.cloud/ipfs/QmYueiuRNmL4MiA2GwtVMm6ZagknXnSpQnB3z2gWbz36hP
+
+
+To mint a NFT, we need to create a transaction in the blockchain and execute the code stored in our deployed smart contract. The transaction here is from our address to our Smart Contract address, and the computation we want in this transaction is calling the mintNFT function in the contract.
+
+To call mintNFT, we pass in two arguments: 
+- address recipient of where the minted NFTs go
+- tokenURI of our metadata file
+
+The last step of minting is to sign the transaction with our private key and send to blockchain.
+
+Of course, all transactions on blockchain need gas, so minting is no different. You will need sufficient ETH if you are minting in Ethereum.
+
+
+<h2 id="art">NFT art - hype?</h2>
+
+
+![cryptopunk#8857](cryptopunk.png)
+
+<p style={{fontSize: "0.7em", fontStyle: "italic"}}>CryptoPunk #8857 sold for 2000 ETH or USD 6.6 million in September 2021 (Image credit: Lava Labs)</p>
+
+Currently, digital artwork is one of the most popular applications of the NFT technology. Many artists start doing **NFT drops** - scheduled batch release of new NFTs - that are sold out and swept up by NFT enthusiasts in seconds.
+
+If you are like me, you would be wondering: **is this a hype?** 
+
+After all, if we look at the quality of the average artworks sold as NFTs, it is difficult to see how most of them will hold value in the long run - most seem gimmicky and lack the aesthetic or historical value that we find in artworks at galleries or musuems. 
+
+There are certainly some valuable ones if you know how to find. But for most of them, it is hard to imagine in 50 years, you will tell your grandchild: "hey, this NFT of 8-bit drawing of a puppy is our family treasure. Please take care of it and pass it on." 
+
+Another perspective to look at it - a devil's advocate - is that an artwork has value insofar as the society confers it value. And history has shown time and again that what we value tomorrow might be different from what we value today.
+
+In fairness, even NFT enthusiasts agree that we are in a phase of irrational exuberance with NFT art - fueled by crypto money with the recent sharp rise in crypto prices. Also, NFT is an exciting new frontier, and things are often messy at the start as we test new water.
+
+**Should you start buying NFT art?** If you genuinely like an artwork and would like to own it and support an artist - even if there is no NFT - and if the price is reasonable, go ahead. But if you are in for a quick buck, only do it if you know what you are doing.
+
+While I think the NFT art scene is a hype and filled with people who are in for a quick buck, if we look past all the gimmicky gifs and pixelated arts, it is not difficult to imagine the potential of NFTs for other collectibles - sports cards, gaming artifects, film memorabilia, limited edition music albums, and even stamps. 
+
+Even before NFTs come into being, most of these collectors have a genuine desire to own and trade authentic versions of these items - rather than collecting for the sake of flipping for quick profit. Such genuine desire to own, in my opinion, is a critical precondition for a healthy NFT economy in an industry.
+
+
+
+<h2 id="gaming">NFTs in gaming - Axie Infinity</h2>
+
+Another industry gaining steam in NFTs is gaming. The current market for digital items and in-game artifact is huge - it is one of the main source of revenue for free-to-play games e.g. Dota2 and Fortnite. 
+
+But the problem is, if a gaming company shuts down, or if you get arbitrarily banned by the company, or if your account is stolen, everything you own from years of grinding/trading would be gone. With NFT, you own these items securely and forever, and you can sell/trade it on NFT marketplace in the future even if the game is shut down. 
+
+One of the hottest gaming company this year is Sky Mavis which is based in Vietnam. Sky Mavis released a blockchain-powered game called Axie Infinity that uses its own cryptocurrency and NFTs. To play the game, you need to spend a substantial amount (~$1k) upfront to mint your own in-game animals as NFT called Axies, which you can groom and battle with others to earn more cryptocurrency - a new "play-to-earn" concept. To win battles (and earn), you probably need to spend a lot more to groom and train your pets. Other than earning through winning battles, you can earn from selling your Axie NFT to other new players.
+
+Majority of the players are youth from lower-income countries - 40% alone from the Philippines. The interesting thing is, a lot of these players are playing full-time, despite the high upfront cost, to grind out a living that is equivalent to a monthly salary in their countries.
+
+On first glance, it seems pretty cool that Axie Infinity provides an opportunity for players to make a living out of gaming. But if we look at the underlying economics of this game, there are reasons to be skeptical in the long-term sustainability of this economy in its current form. 
+
+If most of the players are playing a game to earn, then **where does the value / money come from**? To fuel the economy, the game needs to have existing or new players who are willing to regularly spend significant money to buy Axies. But youths from lower-income countries are not spending $1k+ for fun - they are looking to earn. Currently, this economy is not collapsed yet because the game is growing exponentially, with more and more new players willing to invest and buy Axies in the hope of recouping their investment and earning down the road. But at some point, when the user pool stops growing, there won't be enough buyers and new money to sustain the economy. 
+
+Simply put, **if most players in a game are playing to earn a quick buck, there is not enough value to sustain the ecosystem.** It reminds me of Penny Auction back in the days where 1% of users are winners and 99% are losers - the music stopped and the industry collapsed eventually.
+
+For such a concept to be sustainable, it is not impossible; firstly, the game needs to be played for fun for most the players. If 99% of the players are willing to spend some money to have entertainment and not to make a quick buck, it might work. These 99% will want to buy NFTs related to game because they enjoy it - and this will be the lifeblood for the small group of grinders who play to earn a regular living. Secondly, the upfront cost to playing the game needs to be much lower. If a game costs $1,000 to play, by self-selection, only people looking to earn will play the game.
+
+As seen in other games, this type of economy could work. In Dota2, a very small fraction of players are there to make money through trading in-game items and selling accounts. It works because most players play for fun, and most importantly, buy these in-game items for the value it provides from owning/using it, not from selling it.
+
+Source for Axie Infinity: https://medium.com/coinmonks/axie-infinity-a-developing-worlds-messiah-or-the-biggest-ponzi-scheme-in-crypto-right-now-564ecfb62054
+
+
+
+
+
