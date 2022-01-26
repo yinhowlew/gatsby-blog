@@ -41,7 +41,7 @@ const About = ({ data }) => {
 		    <p>work-related writings on <a href='https://medium.com/@yinhow'>Medium.</a></p>
 		    <p>I also write about poker <span><a href="https://positiveev.wordpress.com">here</a></span>. </p>
 
-		</main> 
+			</main> 
 	  </Layout>		
 	)
 }

@@ -12,21 +12,28 @@ const TagsPage = ({
       siteMetadata: { title },
     },
   },
-}) => (
-  <Layout>
-    <SEO title="All posts" />  
-    <div>
-      <h1>Tags</h1>
-        <div  style={{ display: "flex", flexDirection: "row"}}>
-        {group.sort(function(a, b){return b.totalCount-a.totalCount}).map(tag => (
-            <Link key={tag.fieldValue} to={`/tags/${tag.fieldValue.toLowerCase()}/`}>
-              <Tag>{tag.fieldValue} ({tag.totalCount})</Tag>
-            </Link>
-        ))}
-        </div>
-    </div>
-  </Layout>
-)
+}) => {
+
+	const tagList = group.sort((a,b) => b.totalCount - a.totalCount)
+		.map(tag => (
+			<Link key={tag.fieldValue} to={`/tags/${tag.fieldValue.toLowerCase()}/`}>
+				<Tag>{tag.fieldValue} ({tag.totalCount})</Tag>
+			</Link>
+		))
+
+	return (
+		<Layout>
+			<SEO title="All posts" />  
+			<div>
+				<h1>Tags</h1>
+				<div  style={{ display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+					{tagList} 
+				</div>
+			</div>
+		</Layout>
+	)
+}
+
 TagsPage.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({

@@ -6,37 +6,37 @@ import SEO from '../components/SEO';
 
 
 const Tags = ({ pageContext, data }) => {
-  const { tag } = pageContext
-  const { edges, totalCount } = data.allMdx
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
-  return (
-    <Layout>
-      <SEO title={tag} description={`Posts in ${tag} category`} />          
-      <h2>{tagHeader}</h2>
-      <ul>
-        {edges
-          // .filter(({ node }) => node.frontmatter.title.slice(0,7) !== "(draft)") // new to hide draft
-          .map(({ node }) => {
-            const { slug } = node.fields
-            const { title } = node.frontmatter
-            return (
-              <li key={slug}>
-                <Link to={slug}>{title}</Link>
-              </li>
-            )
-        })}
-      </ul>
-      {/*
-              This links to a page that does not yet exist.
-              You'll come back to it!
-            */}
-      <Link to="/tags">all tags</Link>
-      <br />
-    </Layout>
-  )
+	const { tag } = pageContext
+	const { edges, totalCount } = data.allMdx
+	const tagHeader = `${totalCount} posts tagged with "${tag}"`
+
+	const articleList = edges
+		.map(({ node }) => {
+			const { slug } = node.fields
+			const { title } = node.frontmatter
+			return (
+				<li key={slug}>
+					<Link to={slug}>{title}</Link>
+				</li>
+			)
+		})
+
+	return (
+		<Layout>
+			<SEO title={tag} description={`Posts in ${tag} category`} />    
+			      
+			<h2>{tagHeader}</h2>
+
+			<ul>
+				{articleList}
+			</ul>
+
+			<Link to="/tags">all tags</Link>
+			<br />
+		</Layout>
+	)
 }
+
 Tags.propTypes = {
   pageContext: PropTypes.shape({
     tag: PropTypes.string.isRequired,

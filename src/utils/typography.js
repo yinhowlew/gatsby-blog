@@ -24,7 +24,7 @@ FairyGates.overrideThemeStyles = () => ({
     color: 'var(--textTitle)'
   },
   h2: {
-    color: 'var(--textTitle)'
+    color: 'var(--textTitle)',
   },
   h3: {
     color: 'var(--textTitle)'
@@ -58,11 +58,11 @@ FairyGates.overrideThemeStyles = () => ({
     fontSize: '1rem',
   },
   blockquote: {
-    fontSize: '1em',
-    fontStyle: 'normal',
+    fontSize: '1.2em',
+    fontStyle: 'italic',
     color: 'var(--textTitle)',
-    borderLeftColor: 'inherit',
-    borderLeft: '4px solid',
+    borderLeftColor: 'var(--textLink)',
+    borderLeft: '2px solid',
     opacity: '0.6',
   },
   'blockquote.translation': {

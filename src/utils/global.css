@@ -3,6 +3,13 @@ body {
   background-color: var(--bg);
 }
 
+h2 {
+  margin-bottom: 30px;  /*  new Jan 2022 for paragraph header */
+}
+h3 {
+  margin-bottom: 30px;  /*  new Jan 2022 for paragraph header */
+}
+
 body.light {
   --bg: #ffffff;
   --bg-secondary: rgb(249, 250, 251);
@@ -249,7 +256,9 @@ pre[data-line] {
   min-width: 100%;
 }
 
-
+.home-title {
+  margin-bottom: 15px;
+}
 .home-title:hover {
 /*  color: var(--textLink);*/
   text-decoration: underline;

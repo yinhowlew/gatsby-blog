@@ -20,19 +20,9 @@ const Heart = (props) => {
 			fontSize="30px" 
 			color="red" 
 			beat={beat}
-			onClick={() => {
-				clickBeat();
-			}} 
+			onClick={() => clickBeat()} 
 		/>
 	)
 }
 
 export default Heart;
-
-			// <MdHeart
-			// 	fontSize="30px" 
-			// 	color="red" 
-			// 	beat={beat}
-			// 	// beat={false}
-			// 	onClick={() => clickBeat()} 
-			// />
