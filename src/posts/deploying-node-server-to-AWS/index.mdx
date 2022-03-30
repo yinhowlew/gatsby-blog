@@ -22,15 +22,13 @@ Table of Content:
 3. <a href="#part-2">Deploying to AWS</a>
 4. <a href="#after">After thoughts</a>
 
-...
-
 <h2 id="background">Background</h2>
 
 My deployment experience up to this point has mainly been on Heroku and Firebase - very simple and idiot-proof platforms. 
 
 AWS is a whole different beast. It is known to be painful and have steep learning curve for beginners. So as a masochist, this should be fun.
 
-...
+---
 
 Our test project is an <a href="http://boxgreen.web.app/">e-commerce</a> site replicating my friend's site. Read <Link to="/learning-to-code-finally/">here</Link> on how the frontend is built if interested.
 
@@ -46,7 +44,7 @@ Here's an overview of what this entails:
 3. create an admin interface that integrates the CRUD endpoints
 4. deploy server application to AWS and connect to RDS (for production database)
 
-...
+<br />
 
 <h2 id="part-1">Part 1 - Node server and PostgreSQL</h2>
 
@@ -226,7 +224,7 @@ Initially, I was considering between AWS, Heroku, and Google Cloud/Firebase.
 
 But ultimately, I went with AWS, since it is the more painful option and allows me to learn more.
 
-...
+--- 
 
 There are two main ways to deploy to AWS:
 
@@ -394,7 +392,7 @@ The main commands you need:
 - eb create (I didn't use AWS codecommit)
 - to deploy, git add and git commit, then eb deploy
 
-...
+---
 
 There were 2 main issues I faced:
 
@@ -416,11 +414,11 @@ Eventually, I digged up the server log, and found that the server could not even
 
 Turned out it was because we used **gitignore** to exclude our config file from uploading to our repo. So our server files deployed to EB did not have config file.
 
-Lesson learned: start reading server log early to figure out a problem
-
-...
+---
 
 Once we ironed out these two issues, our deployment on EB works.
+
+Lesson learned: start reading server log early to figure out a problem
 
 
 <h2 id="after">Afterthoughts</h2>
@@ -435,7 +433,7 @@ So I was juggling 6-7 articles at one time and piecing together different releva
 
 Along the way, my thoughts were oscillating between "I have no idea why but this works" and "wtf why is this not working".
 
-...
+---
 
 Six months ago, I didn't imagine I will be using SSH or going through server log.
 
@@ -445,7 +443,7 @@ There's this fear that if you make one minor misstep and you'll see *404 Not Fou
 
 Going through and unpacking this process - confronting this fear and trying to understand the rationale behind each step in the process - helps me in realizing that computer systems and tools are all man-made, and that **even the most complex tools can be learned and mastered with enough time and care.**
 
-...
+---
 
 P.S. The **high** I felt after the Voila moment is right up there alongside my other highs in recent years: making the first sales, closing the first investment, winning poker, achieving team profit, etc. It's rather addictive.
 

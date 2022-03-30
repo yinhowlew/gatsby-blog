@@ -12,11 +12,11 @@ date: 2020-09-04
 
 My gym in NY has recently re-opened. As part of Covid measures, the gym website has a new "Crowd Meter" feature that allows members to monitor gym capacity in real time.  
 
-My goal is to **find the least crowded times to go gym** to reduce exposure risk.
+My goal is to **find the least crowded times to go to the gym** to reduce exposure risk.
 
 ## Approach
 
-To do that, I need to collect data of Crowd Meter over regular interval across a few weeks.
+To do that, I need to collect data of Crowd Meter over a regular interval across a few weeks.
 
 Since there is **no open API** for the data, I will have to build a web scraper.
 
@@ -90,7 +90,7 @@ const puppeteer = require('puppeteer');
 
 I've heard good things about AirTable and decided to give it a try. Think of AirTable as an **excel that works as a cloud database**.
 
-After defining your schema on AirTable, you need to install airtable package in your scraper project.
+After defining your schema on AirTable, you need to install AirTable package in your scraper project.
 
 One cool thing about AirTable is that it has a personalised API documentation with code sample pre-filled with your data schema.
 
@@ -127,9 +127,9 @@ The last piece of the puzzle is to keep the script running and scraping on a reg
 
 One approach is to deploy the script somewhere and hook it up with a cloud function that executes the script regularly. But that seems like an overkill for our purpose. 
 
-Since the gym opening hour is almost the same as my daily hour using my laptop, I decided to just run the script on my **local machine**. I will run the script when I wake up, and stop it when I have dinner.
+Since the gym opening hours largely overlaps with my daily hours using my laptop, I decided to just run the script on my **local machine**. I will run the script when I wake up, and stop it when I have dinner.
 
-Adding the script below - using setInterval API in NodeJS - to execute the scrapping every 30 minutes.
+Adding the script below — using setInterval API in NodeJS — to execute the scrapping every 30 minutes.
 
 ```js
 const checkMeter = async () => {
@@ -143,9 +143,11 @@ setInterval(checkMeter, 1800000);
 
 ## Result
 
-Building scraper is the easy part; going to gym consistently is the hard part. Here are the result of this investigation.
+Building a scraper is the easy part; going to the gym consistently is the hard part. 
 
-#### Scraped data on AirTable
+Here are the result of this investigation.
+
+#### Sample scraped data on AirTable
 
 ![airtable](airtable.png)
 

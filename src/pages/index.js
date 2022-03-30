@@ -25,12 +25,26 @@ export default ({ data }) => {
 			</Link>
 		)
 
+		// NOTE: featured number manual for now
+	const tagGroupWithFeatured = [
+		<Link
+			to="/featured" 
+			key="feature-posts"
+		>
+			<Tag isFeatured={true} >
+					<span role="img" aria-label="featured">✨</span> Featured (6) 
+			</Tag>
+		</Link>
+		, ...tagGroup
+	]		
+
 	const articleList = data.allMdx.edges
 		// .filter(({ node }) => node.frontmatter.title.slice(0,7) !== "(draft)") // new to hide draft
 		.map(({ node }) => 
 			<div key={node.id}>
 				<Link to={node.fields.slug}>
 					<h3 className="home-title">
+						{node.frontmatter.featured && <span role="img" aria-label="featured">✨ </span>} 
 						{node.frontmatter.title}
 					</h3>
 				</Link>
@@ -45,7 +59,7 @@ export default ({ data }) => {
 
 	return (
 		<Layout>
-			<SEO title="Yin How Blog" image={seoImage}/>   
+			<SEO title="Yin How's Blog on Tech, Business, Startup" image={seoImage}/>   
 
 			<div>
 				<h1>Strong Opinions, Loosely Held</h1>
@@ -54,7 +68,7 @@ export default ({ data }) => {
 
 				<h3 style={{ marginBottom: "20px"}}>Topics</h3>
 
-				<div style={{ display: "flex", flexWrap: "wrap"}}>{tagGroup}</div>
+				<div style={{ display: "flex", flexWrap: "wrap"}}>{tagGroupWithFeatured}</div>
 
 				{articleList}
 			</div>
@@ -76,6 +90,7 @@ export const query = graphql`
             title
             description
             date(formatString: "MMMM DD, YYYY")
+            featured
           }
           excerpt
           fields {

@@ -25,8 +25,8 @@ const Intro = ({ data }) => {
 		      style={style.image}
 		    />	 
 		    <div className="intro-content"> 
-		    	<p>hello there, yinhow here.</p> 
-		    	<p>2020 update: currently on sabbatical in NYC. will be writing on my learnings during this sabbatical while surviving the pandemic.</p>
+		    	<p>Hello there, yinhow here.</p> 
+		    	<p>2020 update: moved to NYC. Currently helping a startup find product-market fit, while experimenting with side projects.</p>
 		    	
 		    </div>
 		</section>
