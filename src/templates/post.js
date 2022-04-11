@@ -151,7 +151,7 @@ export default ({ data, props, pageContext }) => {
 
 				<h3>Thank you for reading</h3>
 				<p>If you'd like a monthly email on new posts, please pop your email <a href="https://tinyletter.com/yinhow">here</a>.</p>
-				<p>If you like this article, please click on the meaningless heart icon below.</p>
+				<p>If you like this article, please click on the heart icon below.</p>
 
 
 				<Heart updateLike={updateLike} />
