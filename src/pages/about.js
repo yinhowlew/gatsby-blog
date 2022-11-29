@@ -42,8 +42,8 @@ const About = ({ data }) => {
 	    	<p>Random: <Link to="/decrypto/">Decrypto</Link> board game built for my friends</p>
 
 		    <h3>Other writings</h3>
-		    <p>For my previous company on <a href='https://medium.com/@yinhow'>Medium.</a></p>
-		    <p>For poker <span><a href="https://positiveev.wordpress.com">here</a></span>. </p>
+		    <p>For my previous company on <a href='https://medium.com/@yinhow'>Medium</a></p>
+		    <p>For poker <span><a href="https://positiveev.wordpress.com">here</a></span> </p>
 
 			</main> 
 	  </Layout>		

@@ -10,7 +10,7 @@ module.exports = {
     author: 'yinhow',
     siteUrl: 'https://yinhow.com',
     description: 'yinhow personal blog',
-    keywords: ['tech','product','startup','coding','poker', "yin how lew", "yinhowlew"]
+    keywords: ['tech','product','startup','coding','poker', "yin how lew", "yinhowlew", "Yin How Lew"]
   },
   plugins: [
      {
@@ -20,6 +20,12 @@ module.exports = {
         path: `${__dirname}/src/posts/`,
       },
     },
+    { // NEW TEST
+      resolve: "gatsby-transformer-sharp",
+      options: {
+        checkSupportedExtensions: true,
+      },
+    },    
     // for images in pages
     {
       resolve: `gatsby-source-filesystem`,
