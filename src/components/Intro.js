@@ -26,7 +26,7 @@ const Intro = ({ data }) => {
 		    />	 
 		    <div className="intro-content"> 
 		    	<p>Hello there, yinhow here.</p> 
-		    	<p>2020 update: moved to NYC. Currently helping a startup find product-market fit, while experimenting with side projects.</p>
+		    	<p>2020 update: moved to NYC. Currently doing product at a fashion retail company.</p>
 		    	
 		    </div>
 		</section>
